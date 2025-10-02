@@ -51,4 +51,4 @@ www/e-commerce/
 2. npm init -y # initialize package.json
 3. npm install tailwindcss @tailwindcss/cli # install tailwindcss CLI
 4. npx @tailwindcss/cli -i ./css/input.css -o ./css/output.css --watch # build tailwindcss
-5. <link rel="stylesheet" href="./css/output.css"> # include in relevant HTML pages
+5. ```text <link rel="stylesheet" href="./css/output.css">``` # include in relevant HTML pages
