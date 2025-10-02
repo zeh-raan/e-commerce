@@ -1,8 +1,8 @@
 # A full-fledged dynamic E-commerce website
 
 ## Authors
-Boodun Abdur-Rahmaan - 2415832 
-Azimekhan Zehraan    - 2413539
+* Boodun Abdur-Rahmaan - 2415832 
+* Azimekhan Zehraan    - 2413539
 
 Module: Internet Technologies and Web Services
 
@@ -16,6 +16,7 @@ The website includes basic e-commerce features such as:
 
 ## Folder Structure
 
+```text
 www/e-commerce/
 │── assets/
 │   ├── images/
@@ -33,6 +34,7 @@ www/e-commerce/
 │   └── ts/
 │   
 │── README.md
+```
 
 ## Tech Stack
 
@@ -46,7 +48,7 @@ www/e-commerce/
 ### Front-End
 
 1. cd to `frontend` folder:
-npm init -y                                                        # initialize package.json
-npm install tailwindcss @tailwindcss/cli                           # install tailwindcss CLI
-npx @tailwindcss/cli -i ./css/input.css -o ./css/output.css --watch # build tailwindcss
-<link rel="stylesheet" href="./css/output.css"> include in relevant HTML pages
+2. npm init -y                                                         # initialize package.json
+3. npm install tailwindcss @tailwindcss/cli                            # install tailwindcss CLI
+4. npx @tailwindcss/cli -i ./css/input.css -o ./css/output.css --watch # build tailwindcss
+5. <link rel="stylesheet" href="./css/output.css">                     # include in relevant HTML pages
