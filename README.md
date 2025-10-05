@@ -1,14 +1,12 @@
 # A full-fledged dynamic E-commerce website
 
-Module: Internet Technologies and Web Services
-
 ## Authors
 * Boodun Abdur-Rahmaan - 2415832 
 * Azimekhan Zehraan    - 2413539
 
-
 ## Project Overview
 This is a full-fledged dynamic e-commerce website.
+- Module: Internet Technologies and Web Services
 
 The website includes basic e-commerce features such as:
 - Product listing and search
@@ -18,7 +16,7 @@ The website includes basic e-commerce features such as:
 ## Folder Structure
 
 ```text
-www/e-commerce/
+e-commerce/
 │── assets/
 │   ├── images/
 │   └── icons/
@@ -37,12 +35,16 @@ www/e-commerce/
 │── README.md
 ```
 
-## Tech Stack
+Below are the technologies used for this project!
 
-- **Frontend  :** HTML, Tailwindcss CLI, JavaScript, AJAX, DOM
-- **Backend   :** PHP
-- **Database  :** MySQL
-- **Data Files:** XML, JSON
+Tech Stack| &nbsp;
+---|---
+**Frontend** | HTML5
+&nbsp; | TailwindCSS *(through CLI)*
+&nbsp; | JavaScript *(includes AJAX)*
+**Backend**  | PHP
+**Data Files** | XML
+&nbsp; | JSON
 
 ## Setup instructions
 
@@ -52,4 +54,4 @@ www/e-commerce/
 2. npm init -y # initialize package.json
 3. npm install tailwindcss @tailwindcss/cli # install tailwindcss CLI
 4. npx @tailwindcss/cli -i ./css/input.css -o ./css/output.css --watch # build tailwindcss
-5. `<link href="./css/output.css" rel="stylesheet">` # include in relevant HTML pages
+5. ```<link rel="stylesheet" href="./css/output.css">``` # include in relevant HTML pages
