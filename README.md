@@ -36,12 +36,16 @@ www/e-commerce/
 │── README.md
 ```
 
-## Tech Stack
+Below are the technologies used for this project!
 
-- **Frontend  :** HTML, Tailwindcss CLI, TypeScript, AJAX, DOM
-- **Backend   :** PHP
-- **Database  :** MySQL
-- **Data Files:** XML, JSON
+Tech Stack| &nbsp;
+---|---
+**Frontend** | HTML5
+&nbsp; | TailwindCSS *(through CLI)*
+&nbsp; | TypeScript *(includes AJAX)*
+**Backend**  | PHP
+**Data Files** | XML
+&nbsp; | JSON
 
 ## Setup instructions
 
