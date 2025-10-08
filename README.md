@@ -72,25 +72,22 @@ Follow these steps to get your development environment set up and operational:
     ```
 
 3. **Build JS Files**  
-   *This can be done either from root or within `frontend/`*
+   *This can be done either from root `/` or within `frontend/`. Command shows from within root `/`*
 
     ```bash
-    cd ..
     tsc -p frontend
     ```
 
-4. **Starts PHP Server**  
+4. **Build CSS Files using `TailwindCSS CLI`**  
+   *This can be done either from root `/` or within `frontend/`. Command shows from within root `/`*
+
+   ```bash
+   npx @tailwindcss/cli -i ./frontend/css/input.css -o ./frontend/css/output.css
+   ```
+
+5. **Starts PHP Server**  
    *This should be done from root!*
 
    ```bash
    php -S localhost:8000
    ```
-
-## ➕ Other Instructions
-*We should consider how to implement the instructions below with the instructions above!*
-
-5. cd to `frontend` folder:
-6. npm init -y # initialize package.json
-7. npm install tailwindcss @tailwindcss/cli # install tailwindcss CLI
-8. npx @tailwindcss/cli -i ./style/input.css -o ./css/output.css --watch # build tailwindcss
-9.  ```<link rel="stylesheet" href="./css/output.css">``` # include in relevant HTML pages
