@@ -6,16 +6,57 @@
     <title>Home</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="./css/output.css">
+    <link rel="stylesheet" href="/frontend/css/output.css">
 </head>
-<body>
-    <!-- Navigation bar -->
-    <!-- Hero Section -->
-    <!-- Main -->
-    <!-- Footer -->
-    <!-- TS -->
-
-    <h1>Hello World</h1>
+<body class="bg-slate-50 min-h-screen">
+    <div class="max-w-4xl mx-auto p-8">
+        <!-- Using new v4 features -->
+        <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-8">
+            🚀 Tailwind v4 Test
+        </h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+                <h2 class="text-xl font-semibold text-gray-900 mb-3">Auto Content Detection</h2>
+                <p class="text-gray-600 mb-4">v4 automatically scans your HTML files without config!</p>
+                <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors">
+                    Test Button
+                </button>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+                <h2 class="text-xl font-semibold text-gray-900 mb-3">CSS Variables</h2>
+                <p class="text-gray-600">Customize with CSS variables instead of config file.</p>
+                <div class="mt-4 flex gap-2">
+                    <div class="w-4 h-4 rounded bg-[--color-brand]"></div>
+                    <span class="text-sm text-gray-500">Brand color from CSS variable</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- New v4 features -->
+        <div class="mt-8 p-6 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl">
+            <h3 class="text-lg font-medium text-gray-900 mb-3">v4 Features Working:</h3>
+            <ul class="grid grid-cols-2 gap-2 text-sm text-gray-700">
+                <li class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                    Auto content detection
+                </li>
+                <li class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                    No config needed
+                </li>
+                <li class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                    CSS-first configuration
+                </li>
+                <li class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                    Faster builds
+                </li>
+            </ul>
+        </div>
+    </div>
     <script src="/frontend/dist/main.js"></script>
 </body>
 </html>
