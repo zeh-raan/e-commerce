@@ -6,8 +6,9 @@
 
     <title>File-based E-Commerce</title>
 
-    <link rel="stylesheet" href="./css/output.css">
+    <link rel="stylesheet" href="/frontend/css/output.css">
 </head>
+
 <body>
     <header>
         <nav>
@@ -16,6 +17,7 @@
     </header>
 
     <!-- Hero Section -->
+    
     <!-- Main -->
     <section id="catalog">
         <ol id="products-here"></ol>
@@ -36,13 +38,16 @@
 
             let products = xmlDoc.getElementsByTagName("product");
             for (let i = 0; i < products.length; i++) {
-                catalog.innerHTML += `<li>${products[i].getElementsByTagName("name")[0].childNodes[0].nodeValue}</li>`;
+                let productName = products[i].getElementsByTagName("name")[0].childNodes[0].nodeValue;
+                let productImg = products[i].getElementsByTagName("img")[0].childNodes[0].nodeValue;
+
+                catalog.innerHTML += `<li>${productName}</li>`;
+                catalog.innerHTML += `<img src="/api/get_image.php?imgName=${productImg}" alt="" />`
             }
         };
 
-        window.onload = () => {
-
-            // AJAX with XML
+        // AJAX with XML
+        const getProductsAjax = () => {
             const xhr = new XMLHttpRequest();
             xhr.onreadystatechange = () => {
                 if ((xhr.readyState == 4) && (xhr.status == 200)) {
@@ -50,8 +55,12 @@
                 }
             };
 
-            xhr.open("GET", "/api/get_products.php", true);
+            xhr.open("GET", "/api/get_all_products.php", true);
             xhr.send();
+        };
+
+        window.onload = () => {
+            getProductsAjax();            
         };
     </script>
 </body>
