@@ -1,4 +1,6 @@
 <?php
+// Router setup
+
 $frontendRoutes = [ "" => "index.html", ];
 
 function routePath(string $path) {
@@ -6,7 +8,7 @@ function routePath(string $path) {
 
     // Set up API routes (i.e. api/product/1234)
     if (strpos($path, "api/") === 0) {
-        $apiBackendFilepath = __DIR__ . "/backend/api" . substr($path, 4);
+        $apiBackendFilepath = __DIR__ . "/backend/api/" . substr($path, 4);
         if (!(file_exists($apiBackendFilepath) && is_file($apiBackendFilepath))) {
             http_response_code(404);
             header("Content-Type: application/json");
@@ -14,8 +16,7 @@ function routePath(string $path) {
             return;
         }
 
-        // Serves file (file returns JSON response)
-        header("Content-Type: application/json");
+        // Serves file
         include $apiBackendFilepath;
         return;
     }

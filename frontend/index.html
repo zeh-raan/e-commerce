@@ -3,19 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
 
-    <!-- CSS -->
+    <title>File-based E-Commerce</title>
+
     <link rel="stylesheet" href="./css/output.css">
 </head>
 <body>
-    <!-- Navigation bar -->
+    <header>
+        <nav>
+            <!-- Navigate the seas here! -->
+        </nav>
+    </header>
+
     <!-- Hero Section -->
     <!-- Main -->
-    <!-- Footer -->
-    <!-- TS -->
+    <section id="catalog">
+        <ol id="products-here"></ol>
+    </section>
 
-    <h1>Hello World</h1>
+    <!-- Footer -->
+    <footer></footer>
+
     <script src="/frontend/dist/main.js"></script>
+
+    <!-- Will convert to TS later. Just a proof of concept -->
+    <script>
+
+        // JavaScript (DOM Manipulation) with XML
+        const populateCatalog = (xmlDoc) => {
+            const catalog = document.getElementById("products-here");
+            catalog.innerHTML = ""; // Clears catalog
+
+            let products = xmlDoc.getElementsByTagName("product");
+            for (let i = 0; i < products.length; i++) {
+                catalog.innerHTML += `<li>${products[i].getElementsByTagName("name")[0].childNodes[0].nodeValue}</li>`;
+            }
+        };
+
+        window.onload = () => {
+
+            // AJAX with XML
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = () => {
+                if ((xhr.readyState == 4) && (xhr.status == 200)) {
+                    populateCatalog(xhr.responseXML);
+                }
+            };
+
+            xhr.open("GET", "/api/get_products.php", true);
+            xhr.send();
+        };
+    </script>
 </body>
 </html>
