@@ -1,7 +1,7 @@
 <?php
 // Router setup
 
-$frontendRoutes = [ "" => "index.html", ];
+$frontendRoutes = [ "" => "index.php", ];
 
 function routePath(string $path) {
     global $frontendRoutes;

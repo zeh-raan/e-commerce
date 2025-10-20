@@ -13,7 +13,7 @@ session_start(); // For per user customization
     <link rel="stylesheet" href="/frontend/css/output.css">
 </head>
 
-<body>
+<body class="bg-slate-900 p-4">
     <header>
         <nav>
             <!-- Navigate the seas here! -->
@@ -45,10 +45,26 @@ session_start(); // For per user customization
             let products = xmlDoc.getElementsByTagName("product");
             for (let i = 0; i < products.length; i++) {
                 let productName = products[i].getElementsByTagName("name")[0].childNodes[0].nodeValue;
-                let productImg = products[i].getElementsByTagName("img")[0].childNodes[0].nodeValue;
+                let productDesc = products[i].getElementsByTagName("desc")[0].childNodes[0].nodeValue.slice(0, 64) + "..."; // Includes a shortened version
+                let productPrice = products[i].getElementsByTagName("price")[0].childNodes[0].nodeValue;
 
-                catalog.innerHTML += `<li>${productName}</li>`;
-                catalog.innerHTML += `<img src="/api/get_image.php?imgName=${productImg}" alt="" />`
+                let productImg = products[i].getElementsByTagName("img")[0].childNodes[0].nodeValue; // Selecting only 1 image for now
+
+                const card = `
+                    <div id="product-${i}" class="w-100 bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                        <div class="w-full h-48 bg-gray-100 flex items-center justify-center">
+                            <img src="/api/get_image.php?imgName=${productImg}" alt="" class="w-full h-full object-cover" />
+                        </div>
+
+                        <div class="p-4">
+                            <h1 class="text-lg font-bold text-gray-900 mb-1">${productName}</h1>
+                            <h3 class="text-xl font-semibold text-green-600 mb-2">${productPrice}</h3>
+                            <p class="text-sm text-gray-600">${productDesc}</p>
+                        </div>
+                    </div>
+                `;
+
+                catalog.innerHTML += card;
             }
         };
 
