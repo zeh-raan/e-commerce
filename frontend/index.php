@@ -1,3 +1,7 @@
+<?php
+session_start(); // For per user customization
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +34,8 @@
 
     <!-- Will convert to TS later. Just a proof of concept -->
     <script>
+
+        // TODO: Function to handle card templates (with built-in carousel)
 
         // JavaScript (DOM Manipulation) with XML
         const populateCatalog = (xmlDoc) => {
