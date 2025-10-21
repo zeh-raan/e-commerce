@@ -1,7 +1,11 @@
 <?php
 // Router setup
 
-$frontendRoutes = [ "" => "index.php", ];
+$frontendRoutes = [
+    "" => "index.php",
+    "product/add" => "add_product_form.php",
+    "product/add" => "add_product_form.php"
+];
 
 function routePath(string $path) {
     global $frontendRoutes;
@@ -25,7 +29,7 @@ function routePath(string $path) {
     if (!isset($frontendRoutes[$path])) {
         http_response_code(404);
         header("Content-Type: application/json");
-        echo json_encode([ "error" => "Page not found!" ]);
+        echo json_encode([ "error" => $path ]);
         return;
     }
 

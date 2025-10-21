@@ -23,9 +23,7 @@ session_start(); // For per user customization
     <!-- Hero Section -->
     
     <!-- Main -->
-    <section id="catalog">
-        <ol id="products-here"></ol>
-    </section>
+    <section id="catalog"></section>
 
     <!-- Footer -->
     <footer></footer>
@@ -39,7 +37,7 @@ session_start(); // For per user customization
 
         // JavaScript (DOM Manipulation) with XML
         const populateCatalog = (xmlDoc) => {
-            const catalog = document.getElementById("products-here");
+            const catalog = document.getElementById("catalog");
             catalog.innerHTML = ""; // Clears catalog
 
             let products = xmlDoc.getElementsByTagName("product");
@@ -51,7 +49,7 @@ session_start(); // For per user customization
                 let productImg = products[i].getElementsByTagName("img")[0].childNodes[0].nodeValue; // Selecting only 1 image for now
 
                 const card = `
-                    <div id="product-${i}" class="w-100 bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                    <div id="product-${i}" class="w-100 h-100 bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
                         <div class="w-full h-48 bg-gray-100 flex items-center justify-center">
                             <img src="/api/get_image.php?imgName=${productImg}" alt="" class="w-full h-full object-cover" />
                         </div>
