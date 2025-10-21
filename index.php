@@ -26,6 +26,25 @@ function routePath(string $path) {
     }
 
     // Set up Frontend routes
+    // Handles routes with URL params/ids first (i.e. /product/123)
+
+    if (preg_match("#^product/(\d+)$#", $path, $matches)) {
+        $prodID = $matches[1];
+        $frontendFilepath = __DIR__ . "/frontend/view_product.php";
+
+        if (!(file_exists($frontendFilepath) && is_file($frontendFilepath))) {
+            http_response_code(404);
+            header("Content-Type: application/json");
+            echo json_encode([ "error" => "Product Page does not exist!" ]);
+            return;
+        }
+
+        $GLOBALS["prodID"] = $prodID;
+        include($frontendFilepath);
+        return;
+    }
+
+    // Other "static" routes
     if (!isset($frontendRoutes[$path])) {
         http_response_code(404);
         header("Content-Type: application/json");
