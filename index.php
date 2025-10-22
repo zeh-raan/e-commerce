@@ -39,7 +39,7 @@ function routePath(string $path) {
             return;
         }
 
-        $GLOBALS["prodID"] = $prodID;
+        $GLOBALS["prodId"] = $prodID;
         include($frontendFilepath);
         return;
     }
