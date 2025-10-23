@@ -1,12 +1,30 @@
-/* Tailwind CSS for product cards in index.php */
-/* I'm not good at using the Tailwind CLI so it doesn't work */
-/* But I'm leaving it here in case @zeh-raan can fix it */
+/* But I'm leaving it here in case @zeh-raan can fix it - I GOT TUH HOMIE */
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer utilities {
+  @keyframes slide-down {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-slide-down {
+    animation: slide-down 0.6s ease-out forwards;
+  }
+}
+
 
 @layer components {
+    /* Icons responsive */
+    .icon {
+        @apply w-4 h-4 sm:w-6 sm:h-6;
+    }
+
     .product-card {
         @apply bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden;
     }
