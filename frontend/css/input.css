@@ -1,0 +1,37 @@
+/* Tailwind CSS for product cards in index.php */
+/* I'm not good at using the Tailwind CLI so it doesn't work */
+/* But I'm leaving it here in case @zeh-raan can fix it */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .product-card {
+        @apply bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden;
+    }
+    
+    .product-card-carousel {
+        @apply w-full h-48 bg-gray-100 flex items-center justify-center;
+    }
+    
+    .product-card-carousel img {
+        @apply w-full h-full object-cover;
+    }
+    
+    .product-card-details {
+        @apply p-4;
+    }
+    
+    .product-card-details h1 {
+        @apply text-lg font-bold text-gray-900 mb-1;
+    }
+    
+    .product-card-details h3 {
+        @apply text-xl font-semibold text-green-600 mb-2;
+    }
+    
+    .product-card-details p {
+        @apply text-sm text-gray-600;
+    }
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+    <category name="Electronics" prefix="el">
+        <product id="1">
+            <name>1 Terabyte SSD</name>
+            <desc>A Solid State Drive by "I don't know who" with 1024 GiBs of space!!</desc>
+            <price>Rs 4000</price>
+            <details>
+                <detail name="storage">1024 GiBs of Memory</detail>
+            </details>
+            <images>
+                <img>test.jpg</img>
+            </images>
+        </product>
+    </category>
+</products>
