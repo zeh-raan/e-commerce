@@ -6,11 +6,11 @@
             <desc>A Solid State Drive by "I don't know who" with 1024 GiBs of space!!</desc>
             <price>Rs 4000</price>
             <details>
-                <detail name="storage">1024 GiBs of Memory</detail>
+                <dt name="storage">1024 GiBs of Memory</dt>
             </details>
             <images>
-                <img>test.jpg</img>
+                <img>prod_3_68fd1340d6c476.94408253.jpg</img>
             </images>
         </product>
-    </category>
+   </category>
 </products>
