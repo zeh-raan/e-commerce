@@ -4,7 +4,6 @@
 $frontendRoutes = [
     "" => "index.php",
     "product/add" => "add_product_form.php",
-    "product/add" => "add_product_form.php"
 ];
 
 function routePath(string $path) {
@@ -65,11 +64,10 @@ function routePath(string $path) {
         include($frontendFilepath);
         return;
     }
-
-    // Code below runs if all else fails
-    http_response_code(404);
-    header("Content-Type: application/json");
-    echo json_encode([ "error" => "Page not found!" ]);
+        // Code below runs if all else fails
+        http_response_code(404);
+        header("Content-Type: application/json");
+        echo json_encode([ "error" => "Page not found!" ]);
 }
 
 $URI = $_SERVER["REQUEST_URI"];
