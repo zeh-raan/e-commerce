@@ -27,7 +27,7 @@ function routePath(string $path) {
     // Set up Frontend routes
     // Handles routes with URL params/ids first (i.e. /product/123)
 
-    if (preg_match("#^product/(\d+)$#", $path, $matches)) {
+    if (preg_match("#^product/(prod_[a-f0-9]+)$#", $path, $matches)) {
         $prodID = $matches[1];
         $frontendFilepath = __DIR__ . "/frontend/view_product.php";
 

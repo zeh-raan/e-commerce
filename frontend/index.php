@@ -5,256 +5,85 @@ session_start(); // For per user customization
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>File-based E-Commerce</title>
+    <title>File-based E-Commerce</title>
 
-  <!-- CSS CLI File -->
+    <!-- CSS CLI File -->
     <link href="frontend/css/output.css" rel="stylesheet">
 </head>
 
 <body class="bg-gray-100">
-  <!-- Navigation Bar -->
-  <header class="fixed top-0 left-0 w-full z-50 shadow-2xl rounded-b-2xl backdrop-blur-md bg-white/30 
-                hover:bg-gray-700 hover:text-gray-200 transition-colors duration-300 animate-slide-down">
-    <nav class="max-w-7xl mx-auto px-4">
-      <div class="flex items-center justify-between h-16">
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full z-50 shadow-2xl rounded-b-2xl backdrop-blur-md bg-white/30 
+        hover:bg-gray-700 hover:text-gray-200 transition-colors duration-300 animate-slide-down">
+        <nav class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
 
-      <!-- Left Search bar -->
-        <form class="relative w-72">
-          <input
-            type="text"
-            placeholder="Search product here..."
-            class="w-full pl-4 pr-10 py-2 rounded-full shadow-xl backdrop-blur-2xl hover:text-gray-200 placeholder-gray-400 transition-colors duration-300 focus:outline-none focus:ring-2 hover:bg-gray-800"
-          >
-          
-        <!-- Icon inside input -->
-          <div class="absolute inset-y-0 right-0 flex items-center pr-3 border-l border-gray-900 h-full">
-            <button type="submit" class="p-1">
-              <img class="icon" src="frontend/assets/icons/search.svg" alt="Search">
-            </button>
-          </div>
-        </form>
+                <!-- Left Search bar -->
+                <form class="relative w-72">
+                    <input
+                    type="text"
+                    placeholder="Search product here..."
+                    class="w-full pl-4 pr-10 py-2 rounded-full shadow-xl backdrop-blur-2xl hover:text-gray-200 placeholder-gray-400 transition-colors duration-300 focus:outline-none focus:ring-2 hover:bg-gray-800"
+                    >
 
-        <!-- Center Navigation links -->
-          <div class="flex space-x-8 justify-center flex-1">
-            <a href="#" class="nav-link">Home</a>
-            <a href="#" class="nav-link">Catalog</a>
-            <a href="#" class="nav-link">About Us</a>
-          </div>
+                    <!-- Icon inside input -->
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 border-l border-gray-900 h-full">
+                        <button type="submit" class="p-1">
+                            <img class="icon" src="frontend/assets/icons/search.svg" alt="Search">
+                        </button>
+                    </div>
+                </form>
 
-        <!-- Right User & Cart -->
-          <div class="flex items-center space-x-4">
-            <a href="#" class="p-2 rounded-full hover:bg-gray-800 transition-colors duration-300">
-              <img class="icon" src="frontend/assets/icons/user.svg" alt="User">
-            </a>
-            <a href="#" class="p-2 rounded-full hover:bg-gray-800 transition-colors duration-300">
-              <img class="icon" src="frontend/assets/icons/cart.svg" alt="Cart">
-            </a>
-          </div>
-      </div>
-    </nav>
-  </header>
+                <!-- Center Navigation links -->
+                <div class="flex space-x-8 justify-center flex-1">
+                    <a href="#" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">Catalog</a>
+                    <a href="#" class="nav-link">About Us</a>
+                </div>
 
-  <!-- Hero Section -->
-  <section id="hero" class="relative h-96 flex flex-col items-center justify-center bg-[url('/frontend/assets/images/bghero.avif')] bg-cover bg-center text-center">
-    <!-- Layered Titles -->
-      <div class="relative">
-        <h2 id="hero-subtitle" class="text-2xl text-white font-bold mt-7 mr-20 opacity-0"></h2>
-        <h1 id="hero-title" class="text-8xl font-extrabold text-white opacity-0 absolute left-1/2 -translate-x-1/2 -top-10 tracking-wide mix-blend-overlay"></h1>
-      </div>
-
-    <!-- Paragraph -->
-      <p id="hero-desc" class="max-w-lg text-gray-100 text-base mt-12 opacity-0 transition-opacity duration-700">
-        Discover products of the highest quality, tailored for your needs. Start your journey today.
-      </p>
-  </section>
-
-  <!-- Section Divider -->
-  <img class="absolute opacity-40" src="/frontend/assets/icons/divider.svg">
-  
-  <!-- Title Bar -->
-  <h1 id="feat-product" class="text-5xl font-bold mx-16 my-12 opacity-0 transition-opacity duration-700">Featured Products.</h1>
-
-  <!-- Main Section -->
-  <section id="catalog" class="flex">
-
-    <!-- Carousel Navigation Previous Button -->
-    <button id="prev" class="carousel-nav-btn"><img class="w-30 h-30" src="/frontend/assets/icons/prev.svg"></button>
-
-    <!-- Tiled Product Grid -->
-    <div id="carousel" class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth space-x-6">
-
-      <!-- ******************* Slide 1 ******************* -->
-      <div class="slider-container">
-
-        <!-- Column 1 -->
-        <div class="row-span-2 product-card group">
-          <img src="/frontend/assets/images/product1.avif" 
-              class="product-image group-hover:scale-105">
-          <div class="product-overlay group-hover:translate-x-0">
-            <div class="product-overlay-content">
-              <p class="text-sm mb-3">A timeless design made with quality materials.</p>
-              <button class="add-to-cart-btn">
-                Add to Cart
-              </button>
+                <!-- Right User & Cart -->
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="p-2 rounded-full hover:bg-gray-800 transition-colors duration-300">
+                        <img class="icon" src="frontend/assets/icons/user.svg" alt="User">
+                    </a>
+                    <a href="#" class="p-2 rounded-full hover:bg-gray-800 transition-colors duration-300">
+                        <img class="icon" src="frontend/assets/icons/cart.svg" alt="Cart">
+                    </a>
+                </div>
             </div>
-          </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative h-96 flex flex-col items-center justify-center bg-[url('/frontend/assets/images/bghero.avif')] bg-cover bg-center text-center">
+        <div class="relative">
+            <h2 id="hero-subtitle" class="text-3xl text-white font-bold mt-7 mr-20 opacity-0"></h2>
+            <h1 id="hero-title" class="text-8xl font-extrabold text-white opacity-0 absolute left-1/2 -translate-x-1/2 -top-10 tracking-wide mix-blend-overlay"></h1>
         </div>
 
-        <!-- Column 2 -->
-        <div class="grid grid-rows-2 gap-4">
-          <!-- Product 2 -->
-          <div class="product-card group">
-            <img src="/frontend/assets/images/product2.avif"
-                class="product-image group-hover:scale-105">
-            <div class="product-overlay group-hover:translate-x-0">
-              <div class="product-overlay-content">
-                <p class="text-sm mb-3">Elegant design for modern living.</p>
-                <button class="add-to-cart-btn">
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>
+        <p id="hero-desc" class="max-w-lg text-gray-100 text-base mt-12 opacity-0 transition-opacity duration-700">
+            Discover products of the highest quality, tailored for your needs. Start your journey today.
+        </p>
+    </section>
 
-          <!-- Product 3 -->
-          <div class="product-card group">
-            <img src="/frontend/assets/images/product3.avif"
-                class="product-image group-hover:scale-105">
-            <div class="product-overlay group-hover:translate-x-0">
-              <div class="product-overlay-content">
-                <p class="text-sm mb-3">Crafted with fine attention to detail.</p>
-                <button class="add-to-cart-btn">
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>
+    <!-- Section Divider -->
+    <img class="absolute opacity-40" src="/frontend/assets/icons/divider.svg">
+    <h1 id="feat-product" class="text-5xl font-bold mx-16 my-12 opacity-0 transition-opacity duration-700">Featured Products.</h1>
+
+    <!-- Featured Section -->
+    <section id="catalog" class="flex overflow-x-hidden">
+        <!-- <button id="prev" class="carousel-nav-btn"><img class="w-30 h-30" src="/frontend/assets/icons/prev.svg"></button> -->
+        
+        <div id="carousel" class="flex overflow-x-hidden snap-x snap-mandatory scroll-smooth space-x-6">
+            <div id="products-display-here" class="slider-container overflow-x-hidden px-8"></div>
         </div>
 
-        <!-- Column 3 -->
-        <div class="grid grid-rows-2 gap-4">
-          <!-- Product 4 -->
-          <div class="product-card group">
-            <img src="/frontend/assets/images/product4.avif"
-                class="product-image group-hover:scale-105">
-            <div class="product-overlay group-hover:translate-x-0">
-              <div class="product-overlay-content">
-                <p class="text-sm mb-3">Minimalist beauty for every home.</p>
-                <button class="add-to-cart-btn">
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>
+        <!-- <button id="next" class="carousel-nav-btn"><img class="w-30 h-30" src="/frontend/assets/icons/next.svg"></button> -->
+    </section>
 
-          <!-- Product 5 -->
-          <div class="product-card group">
-            <img src="/frontend/assets/images/product5.avif"
-                class="product-image group-hover:scale-105">
-            <div class="product-overlay group-hover:translate-x-0">
-              <div class="product-overlay-content">
-                <p class="text-sm mb-3">Classic craftsmanship reimagined.</p>
-                <button class="add-to-cart-btn">
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- ******************* Slide 2 ******************* -->
-      <div class="slider-container">
-
-        <!-- Column 1 -->
-        <div class="row-span-2 product-card group">
-          <img src="/frontend/assets/images/product6.avif" 
-              class="product-image group-hover:scale-105">
-          <div class="product-overlay group-hover:translate-x-0">
-            <div class="product-overlay-content">
-              <p class="text-sm mb-3">A timeless design made with quality materials.</p>
-              <button class="add-to-cart-btn">
-                Add to Cart
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Column 2 -->
-        <div class="grid grid-rows-2 gap-4">
-          <!-- Product 7 -->
-          <div class="product-card group">
-            <img src="/frontend/assets/images/product7.avif"
-                class="product-image group-hover:scale-105">
-            <div class="product-overlay group-hover:translate-x-0">
-              <div class="product-overlay-content">
-                <p class="text-sm mb-3">Elegant design for modern living.</p>
-                <button class="add-to-cart-btn">
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product 8 -->
-          <div class="product-card group">
-            <img src="/frontend/assets/images/product8.avif"
-                class="product-image group-hover:scale-105">
-            <div class="product-overlay group-hover:translate-x-0">
-              <div class="product-overlay-content">
-                <p class="text-sm mb-3">Crafted with fine attention to detail.</p>
-                <button class="add-to-cart-btn">
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Column 3 -->
-        <div class="grid grid-rows-2 gap-4">
-          <!-- Product 9 -->
-          <div class="product-card group">
-            <img src="/frontend/assets/images/product9.avif"
-                class="product-image group-hover:scale-105">
-            <div class="product-overlay group-hover:translate-x-0">
-              <div class="product-overlay-content">
-                <p class="text-sm mb-3">Minimalist beauty for every home.</p>
-                <button class="add-to-cart-btn">
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product 10 -->
-          <div class="product-card group">
-            <img src="/frontend/assets/images/product10.avif"
-                class="product-image group-hover:scale-105">
-            <div class="product-overlay group-hover:translate-x-0">
-              <div class="product-overlay-content">
-                <p class="text-sm mb-3">Classic craftsmanship reimagined.</p>
-                <button class="add-to-cart-btn">
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        </div>
-    </div>
-
-    <!-- Carousel Navigation Next Button -->
-    <button id="next" class="carousel-nav-btn"><img class="w-30 h-30" src="/frontend/assets/icons/next.svg"></button>
-
-  </section>
-
-  <!-- Footer -->
   <footer class="bg-gray-700 text-gray-200 py-12 mt-6 rounded-t-2xl shadow-2xl">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
 
@@ -370,13 +199,129 @@ session_start(); // For per user customization
     });
 
     nextBtn.addEventListener('click', () => {
-      carousel.scrollBy({
-        left: carousel.offsetWidth,
-        behavior: 'smooth'
-      });
+        carousel.scrollBy({
+            left: carousel.offsetWidth,
+            behavior: 'smooth'
+        });
     });
 
   </script>
+
+    <!-- 4 spaces tabs supremacy!! -->
+    <script>
+
+        // Helper function
+        const getProductDetails = (productXML) => {
+            let productId = productXML["id"];
+            let productName = productXML.getElementsByTagName("name")[0].childNodes[0].nodeValue;
+            let productDesc = productXML.getElementsByTagName("desc")[0].childNodes[0].nodeValue.slice(0, 64) + "..."; // Includes a shortened version
+            let productImg = productXML.getElementsByTagName("img")[0].childNodes[0].nodeValue; // Selecting only 1 image for now
+
+            return {
+                id: productId,
+                name: productName,
+                desc: productDesc,
+                img: productImg
+            }
+        };
+
+        // JavaScript (DOM Manipulation) with XML
+        const populateCatalog = (xmlDoc) => {
+            const featuredSection = document.getElementById("products-display-here");
+            let products = xmlDoc.getElementsByTagName("product");
+
+            if (products.length < 5) {
+                return;
+            }
+
+            const productDetails = [];
+            for (let i = 0; i < products.length; i++) {
+                productDetails.push(getProductDetails(products[i]));
+            }
+
+            const featuredSectionHTML = `
+                <div class="row-span-2 product-card group">
+                    <img src="/api/get_image.php?imgName=${productDetails[0].img}" 
+                        class="product-image group-hover:scale-105">
+
+                    <div class="product-overlay group-hover:translate-x-0">
+                        <div class="product-overlay-content">
+                            <p class="text-sm mb-3">${productDetails[0].desc}</p>
+                            <a href="/product/${productDetails[0].id}" class="add-to-cart-btn">View</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-rows-2 gap-4">
+                    <div class="product-card group">
+                        <img src="/api/get_image.php?imgName=${productDetails[1].img}"
+                            class="product-image group-hover:scale-105">
+                        
+                        <div class="product-overlay group-hover:translate-x-0">
+                            <div class="product-overlay-content">
+                                <p class="text-sm mb-3">${productDetails[1].desc}</p>
+                                <a href="/product/${productDetails[1].id}" class="add-to-cart-btn">View</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card group">
+                        <img src="/api/get_image.php?imgName=${productDetails[2].img}"
+                            class="product-image group-hover:scale-105">
+                        <div class="product-overlay group-hover:translate-x-0">
+                            <div class="product-overlay-content">
+                                <p class="text-sm mb-3">${productDetails[2].desc}</p>
+                                <a href="/product/${productDetails[2].id}" class="add-to-cart-btn">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-rows-2 gap-4">
+                    <div class="product-card group">
+                        <img src="/api/get_image.php?imgName=${productDetails[3].img}"
+                            class="product-image group-hover:scale-105">
+                        <div class="product-overlay group-hover:translate-x-0">
+                            <div class="product-overlay-content">
+                                <p class="text-sm mb-3">${productDetails[3].desc}</p>
+                                <a href="/product/${productDetails[3].id}" class="add-to-cart-btn">View</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card group">
+                        <img src="/api/get_image.php?imgName=${productDetails[4].img}"
+                            class="product-image group-hover:scale-105">
+                        <div class="product-overlay group-hover:translate-x-0">
+                            <div class="product-overlay-content">
+                                <p class="text-sm mb-3">${productDetails[4].desc}</p>
+                                <a href="/product/${productDetails[4].id}" class="add-to-cart-btn">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            featuredSection.innerHTML = featuredSectionHTML;
+        };
+
+        // AJAX with XML
+        const getAllProducts = () => {
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = () => {
+                if ((xhr.readyState == 4) && (xhr.status == 200)) {
+                    populateCatalog(xhr.responseXML);
+                }
+            };
+
+            xhr.open("GET", "/api/get_all_products.php", true);
+            xhr.send();
+        };
+
+        window.onload = () => {
+            getAllProducts();
+        };
+    </script>
 
     <!-- Will convert to TS later. Just a proof of concept -->
     <!-- <script>

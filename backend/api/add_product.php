@@ -14,17 +14,12 @@ $data = json_decode($json, true);
 $filepath = substr(__DIR__, 0, strpos(__DIR__, "api")) . "data/products.xml";
 $xml = simplexml_load_file($filepath);
 
-// Generates a new Id
-$prodCount = 0;
+// Finds associated category
 $categoryFound = false;
 
 foreach ($xml->children() as $category) {
     if ((string)$category["name"] == $data["category"]) {
         $categoryFound = $category;
-    }
-
-    foreach ($category->children() as $prod) {
-        $prodCount++;
     }
 }
 
@@ -37,7 +32,7 @@ if (!$categoryFound) {
 // Creates XML tags
 $prod = $categoryFound->addChild("product");
 
-$newProdId = $prodCount + 1;
+$newProdId = uniqid("prod_");
 $prod->addAttribute("id", $newProdId);
 
 $prod->addChild("name", htmlspecialchars($data["name"]));

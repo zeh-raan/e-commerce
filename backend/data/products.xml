@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <products>
     <category name="Electronics" prefix="el">
-        <product id="1">
-            <name>1 Terabyte SSD</name>
-            <desc>A Solid State Drive by "I don't know who" with 1024 GiBs of space!!</desc>
-            <price>Rs 4000</price>
-            <details>
-                <dt name="storage">1024 GiBs of Memory</dt>
-            </details>
-            <images>
-                <img>prod_3_68fd1340d6c476.94408253.jpg</img>
-            </images>
-        </product>
-   </category>
+        <product id="2"><name>Circular Smartwatch</name><desc>Elegant design for modern living.</desc><price>350</price><details><dt name="Colour">White</dt><dt name="Finish">Matte</dt></details><images><img>prod_3_68fdc751648bb1.79892645.jpg</img></images></product>
+        <product id="3"><name>Headphones</name><desc>Crafted with fine attention to detail.</desc><price>400</price><details><dt name="Colour">Black</dt><dt name="Padding">Cushioned</dt></details><images><img>prod_4_68fdc7e8c47ef2.58758582.jpg</img></images></product>
+   <product id="prod_68fdcbd6f2f69"><name>Apple Smartwatch</name><desc>Apple's mainline smartwatches, giving everyone a taste of luxurious tech.</desc><price>3500</price><details><dt name="Colour">Black</dt></details><images><img>prod_prod_68fdcbd6f2f69_68fdcbd7006be2.66134593.jpg</img></images></product><product id="prod_68fdcc13ba6ed"><name>Headphone</name><desc>Make music get closer to your ears.</desc><price>500</price><details><dt name="Colour">Gray</dt></details><images><img>prod_prod_68fdcc13ba6ed_68fdcc13bc5683.43868260.jpg</img></images></product><product id="prod_68fdccee2463b"><name>Polaroid Camera</name><desc>An antique camera. It's still good, just trust me.</desc><price>5000</price><details><dt name="Manufactured When">The Prehistoric Era</dt></details><images><img>prod_prod_68fdccee2463b_68fdccee26c387.39593919.jpg</img></images></product></category>
+   
+   <category name="Fashion" prefix="fs">
+   <product id="4"><name>Nike Shoes</name><desc>Minimalist beauty for every home.</desc><price>600</price><details><dt name="Colour">Red</dt></details><images><img>prod_5_68fdc8727ca448.46402528.jpg</img></images></product><product id="5"><name>Shades</name><desc>Classic craftsmanship re-imagined.</desc><price>275</price><details><dt name="Colour">Black</dt></details><images><img>prod_6_68fdc89cb91836.76151089.jpg</img></images></product><product id="prod_68fdcc89dc2ac"><name>Hassen Taher Shades B127</name><desc>Teal tints with gold-plated rims. Looking chic while protecting your eyes!</desc><price>2000</price><details><dt name="Tint">Teal</dt></details><images><img>prod_prod_68fdcc89dc2ac_68fdcc89de7805.91911702.jpg</img></images></product></category>
+   
+   <category name="Perfume" prefix="pf">
+   <product id="prod_68fdcb6c19872"><name>Jo Malone London Perfume</name><desc>A premium perfume with a "Nectarine Blossom &amp; Honey" fragrance.</desc><price>625</price><details><dt name="Concentration">Cologne (2-4%)</dt></details><images><img>prod_prod_68fdcb6c19872_68fdcb6c1b1cc1.15146381.jpg</img></images></product></category>
+   
+   <category name="Others" prefix="ot">
+   <product id="1"><name>Water Bottle</name><desc>A timeless design made with quality materials.</desc><price>200</price><details><dt name="Colour">Dark Green</dt><dt name="Finish">Matte</dt></details><images><img>prod_2_68fdc6d9734116.10939666.jpg</img></images></product></category>
 </products>
