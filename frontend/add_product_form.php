@@ -125,12 +125,12 @@ if (!isset($_SESSION["username"])) {
             
             // Validating form inputs
             let name = addProdForm.prodName.value.trim();
-            if (name.length <= 10) {
+            if (name.length < 10) {
                 return "Name must be at least 10 characters long!";
             }
 
             let desc = addProdForm.prodDesc.value.trim();
-            if (desc.length <= 50) {
+            if (desc.length < 50) {
                 return "Description must be at least 50 characters long!";
             }
 
