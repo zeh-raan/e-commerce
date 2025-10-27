@@ -10,12 +10,10 @@ session_start(); // For per user customization
 
     <title>File-based E-Commerce</title>
 
-    <!-- CSS CLI File -->
     <link href="frontend/css/output.css" rel="stylesheet">
 </head>
 
 <body class="bg-gray-100">
-    <!-- Navigation Bar -->
     <header class="fixed top-0 left-0 w-full z-50 shadow-2xl rounded-b-2xl backdrop-blur-md bg-white/30 
         hover:bg-gray-700 hover:text-gray-200 transition-colors duration-300 animate-slide-down">
         <nav class="max-w-7xl mx-auto px-4">
@@ -169,9 +167,6 @@ session_start(); // For per user customization
 
   </footer>
 
-  <!-- TS to JS converter (IDK whats its called)-->
-  <script src="/frontend/dist/main.js"></script>
-
   <!-- Hero animations -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -270,7 +265,7 @@ session_start(); // For per user customization
 
             // TODO: Make this code better
             const featuredSectionHTML = `
-                <div class="row-span-2 product-card group">
+                <div class="row-span-2 product-card group h-[calc(100%-20px)]">
                     <img src="/api/get_image.php?imgName=${productDetails[0].img}" 
                         class="product-image group-hover:scale-105">
 
@@ -352,59 +347,5 @@ session_start(); // For per user customization
             getAllProducts();
         };
     </script>
-
-    <!-- Will convert to TS later. Just a proof of concept -->
-    <!-- <script>
-
-        // TODO: Function to handle card templates (with built-in carousel)
-
-        // JavaScript (DOM Manipulation) with XML
-        const populateCatalog = (xmlDoc) => {
-            const catalog = document.getElementById("catalog");
-            catalog.innerHTML = ""; // Clears catalog
-
-            let products = xmlDoc.getElementsByTagName("product");
-            for (let i = 0; i < products.length; i++) {
-                let productName = products[i].getElementsByTagName("name")[0].childNodes[0].nodeValue;
-                let productDesc = products[i].getElementsByTagName("desc")[0].childNodes[0].nodeValue.slice(0, 64) + "..."; // Includes a shortened version
-                let productPrice = products[i].getElementsByTagName("price")[0].childNodes[0].nodeValue;
-
-                let productImg = products[i].getElementsByTagName("img")[0].childNodes[0].nodeValue; // Selecting only 1 image for now
-
-                const card = `
-                    <div id="product-${i}" class="w-100 h-100 bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-                        <div class="w-full h-48 bg-gray-100 flex items-center justify-center">
-                            <img src="/api/get_image.php?imgName=${productImg}" alt="" class="w-full h-full object-cover" />
-                        </div>
-
-                        <div class="p-4">
-                            <h1 class="text-lg font-bold text-gray-900 mb-1">${productName}</h1>
-                            <h3 class="text-xl font-semibold text-green-600 mb-2">${productPrice}</h3>
-                            <p class="text-sm text-gray-600">${productDesc}</p>
-                        </div>
-                    </div>
-                `;
-
-                // catalog.innerHTML += card;
-            }
-        };
-
-        // AJAX with XML
-        const getProductsAjax = () => {
-            const xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = () => {
-                if ((xhr.readyState == 4) && (xhr.status == 200)) {
-                    populateCatalog(xhr.responseXML);
-                }
-            };
-
-            xhr.open("GET", "/api/get_all_products.php", true);
-            xhr.send();
-        };
-
-        window.onload = () => {
-            getProductsAjax();            
-        };
-    </script> -->
 </body>
 </html>

@@ -64,8 +64,7 @@ if (isset($data["price"])) {
 // Handles details changes (Iterative process)
 // ...
 
-// Handles images
-// ...
+// Image updates are handled by another endpoint
 
 // Or we can just have gone the lazy way:
 // - Delete the product

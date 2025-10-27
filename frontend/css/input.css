@@ -41,7 +41,7 @@
 
   /* Product Card */
   .product-card {
-    @apply relative overflow-hidden rounded-2xl shadow-2xl transition-transform duration-500 hover:-translate-y-2;
+    @apply relative overflow-hidden rounded-2xl shadow-2xl transition-transform duration-500 hover:-translate-y-0;
   }
   
   .product-image {
