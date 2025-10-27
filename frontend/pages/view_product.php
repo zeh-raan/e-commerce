@@ -1,5 +1,6 @@
 <?php
 $prodId = $GLOBALS["prodId"];
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -9,10 +10,15 @@ $prodId = $GLOBALS["prodId"];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Product Page</title>
+    <link rel="stylesheet" href="/frontend/css/output.css">
 </head>
 
 <body>
+    <?php include("frontend/pages/components/header.php"); ?>
+
     <section id="product-here"></section>
+
+    <?php include("frontend/pages/components/footer.php"); ?>
 
     <script>
         const displayProduct = (xml) => {
@@ -21,7 +27,7 @@ $prodId = $GLOBALS["prodId"];
 
             // Getting node values (Just the basics for testing right now)
             let product = xml.getElementsByTagName("product")[0]; // Normally should be just one
-
+            
             let name = product.getElementsByTagName("name")[0].childNodes[0].nodeValue;
             let desc = product.getElementsByTagName("desc")[0].childNodes[0].nodeValue;
             let price = product.getElementsByTagName("price")[0].childNodes[0].nodeValue;

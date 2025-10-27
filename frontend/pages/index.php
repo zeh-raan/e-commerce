@@ -14,46 +14,7 @@ session_start(); // For per user customization
 </head>
 
 <body class="bg-gray-100">
-    <header class="fixed top-0 left-0 w-full z-50 shadow-2xl rounded-b-2xl backdrop-blur-md bg-white/30 
-        hover:bg-gray-700 hover:text-gray-200 transition-colors duration-300 animate-slide-down">
-        <nav class="max-w-7xl mx-auto px-4">
-            <div class="flex items-center justify-between h-16">
-
-                <!-- Left Search bar -->
-                <form class="relative w-72">
-                    <input
-                    type="text"
-                    placeholder="Search product here..."
-                    class="w-full pl-4 pr-10 py-2 rounded-full shadow-xl backdrop-blur-2xl hover:text-gray-200 placeholder-gray-400 transition-colors duration-300 focus:outline-none focus:ring-2 hover:bg-gray-800"
-                    >
-
-                    <!-- Icon inside input -->
-                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 border-l border-gray-900 h-full">
-                        <button type="submit" class="p-1">
-                            <img class="icon" src="frontend/assets/icons/search.svg" alt="Search">
-                        </button>
-                    </div>
-                </form>
-
-                <!-- Center Navigation links -->
-                <div class="flex space-x-8 justify-center flex-1">
-                    <a href="#" class="nav-link">Home</a>
-                    <a href="#" class="nav-link">Catalog</a>
-                    <a href="#" class="nav-link">About Us</a>
-                </div>
-
-                <!-- Right User & Cart -->
-                <div class="flex items-center space-x-4">
-                    <a href="#" class="p-2 rounded-full hover:bg-gray-800 transition-colors duration-300">
-                        <img class="icon" src="frontend/assets/icons/user.svg" alt="User">
-                    </a>
-                    <a href="#" class="p-2 rounded-full hover:bg-gray-800 transition-colors duration-300">
-                        <img class="icon" src="frontend/assets/icons/cart.svg" alt="Cart">
-                    </a>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <?php include("frontend/pages/components/header.php"); ?>
 
     <!-- Hero Section -->
     <section id="hero" class="relative h-96 flex flex-col items-center justify-center bg-[url('/frontend/assets/images/bghero.avif')] bg-cover bg-center text-center">
@@ -111,61 +72,7 @@ session_start(); // For per user customization
     </script>
     -->
 
-  <footer class="bg-gray-700 text-gray-200 py-12 mt-6 rounded-t-2xl shadow-2xl">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
-
-      <!-- Shop Info -->
-      <div>
-        <h2 class="text-xl font-bold mb-4">Shop.</h2>
-        <p class="text-sm text-gray-400">
-          Quality products crafted with care. Bringing elegance and style to your home.
-        </p>
-      </div>
-
-      <!-- Quick Links -->
-      <div>
-        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-        <ul class="space-y-2 text-gray-400">
-          <li><a href="#" class="footer-link">Home</a></li>
-          <li><a href="#" class="footer-link">Products</a></li>
-          <li><a href="#" class="footer-link">About</a></li>
-          <li><a href="#" class="footer-link">Contact</a></li>
-        </ul>
-      </div>
-
-      <!-- Customer Service -->
-      <div>
-        <h3 class="text-lg font-semibold mb-4">Customer Service</h3>
-        <ul class="space-y-2 text-gray-400">
-          <li><a href="#" class="footer-link">FAQ</a></li>
-          <li><a href="#" class="footer-link">Checkout</a></li>
-        </ul>
-      </div>
-
-      <!-- Social Media -->
-      <div>
-        <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
-        <div class="flex space-x-4">
-          <a href="#" class="footer-link">
-            <img src="/frontend/assets/icons/facebook.svg" class="icon">
-          </a>
-          <a href="#" class="footer-link">
-            <img src="/frontend/assets/icons/instagram.svg" class="icon">
-          </a>
-          <a href="#" class="footer-link">
-            <img src="/frontend/assets/icons/whatsapp.svg" class="icon">
-          </a>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Footer Bottom -->
-    <div class="mt-4 py-4 border-t border-black text-center text-gray-500 text-sm">
-      &copy; 2025 Shop. All rights reserved.
-    </div>
-
-  </footer>
+    <?php include("frontend/pages/components/footer.php"); ?>
 
   <!-- Hero animations -->
   <script>
