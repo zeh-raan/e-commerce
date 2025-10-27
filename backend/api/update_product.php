@@ -2,10 +2,6 @@
 
 // Handler function to delete product from XML
 header("Content-Type: application/json; charset=utf-8");
-session_start();
-
-// Lock behind auth (Only admins can delete)
-// ...
 
 // Catches JSON input
 $json = file_get_contents("php://input");
@@ -26,23 +22,21 @@ $xml = simplexml_load_file($filepath);
 
 // Searches for products
 $prodId = trim($data["product_id"]);
+$categoryFound = false;
 $prodFound = false;
 
 foreach ($xml->children() as $category) {
     foreach ($category->children() as $p) {
         if ((string)$p["id"] === $prodId) {
             
-            // Deleting product
-            $dom = dom_import_simplexml($p);
-            $dom->parentNode->removeChild($dom);
-            
-            $prodFound = true;
+            // Found the product to make changes to
+            $prodFound = $p;
+            $categoryFound = $category;
+
             break 2;
         }
     }
 }
-
-// TODO: Delete the images as well
 
 // No products found
 if (!$prodFound) {
@@ -51,16 +45,29 @@ if (!$prodFound) {
     exit;
 }
 
-// Rewrites XML
-if ($xml->asXML($filepath)) {
-    http_response_code(200);
-    echo json_encode([
-        "message" => "Product " . $prodId . " deleted!",
-        "product_id" => $prodId
-    ]);
-    exit;
+// Updates provided fields
+if (isset($data["name"])) {
+    $prodFound->name = htmlspecialchars(trim($data["name"]));
 }
 
-http_response_code(400);
-echo json_encode(["error" => "Failed to delete product"]);
+if (isset($data["desc"])) {
+    $prodFound->desc = htmlspecialchars(trim($data["desc"]));
+}
+
+if (isset($data["price"])) {
+    $prodFound->price = htmlspecialchars(trim($data["price"]));
+}
+
+// Handles category changes (Moving product to another category)
+// ...
+
+// Handles details changes (Iterative process)
+// ...
+
+// Handles images
+// ...
+
+// Or we can just have gone the lazy way:
+// - Delete the product
+// - Add it again with the same ID
 ?>

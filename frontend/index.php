@@ -84,6 +84,35 @@ session_start(); // For per user customization
         <!-- <button id="next" class="carousel-nav-btn"><img class="w-30 h-30" src="/frontend/assets/icons/next.svg"></button> -->
     </section>
 
+    <!-- Just for testing
+    <form id="deleteForm" action="/api/delete_product.php" method="POST">
+        <input class="border-2 border-black" type="text" name="productId" id="productId">
+    </form>
+    <script>
+        document.getElementById('deleteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const productId = document.getElementById('productId').value;
+            const payload = {
+                product_id: productId
+            };
+            
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/api/delete_product.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    console.log('Success:', response);
+                    alert(response.message || response.error);
+                }
+            };
+            
+            xhr.send(JSON.stringify(payload));
+        });
+    </script>
+    -->
+
   <footer class="bg-gray-700 text-gray-200 py-12 mt-6 rounded-t-2xl shadow-2xl">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
 
@@ -239,6 +268,7 @@ session_start(); // For per user customization
                 productDetails.push(getProductDetails(products[i]));
             }
 
+            // TODO: Make this code better
             const featuredSectionHTML = `
                 <div class="row-span-2 product-card group">
                     <img src="/api/get_image.php?imgName=${productDetails[0].img}" 

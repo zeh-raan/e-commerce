@@ -25,6 +25,7 @@ $categoryFound = false;
 foreach ($xml->children() as $category) {
     if ((string)$category["name"] == $data["category"]) {
         $categoryFound = $category;
+        break; // Stops early, taking less time to add a product
     }
 }
 
