@@ -2,83 +2,118 @@
 @import "tailwindcss";
 
 @theme {
-  /* Navigation bar animation */
+    /* Navigation bar animation */
     --animate-slide-down: slide-down 0.6s ease-out forwards;
-    
+
     @keyframes slide-down {
-      0% {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
+        0% {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
     }
 
-  /* Typing animation */
+    /* Typing animation */
     --animate-typing: typing 3s steps(30) 1s forwards;
 
     @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
+        from { width: 0; }
+        to { width: 100%; }
     }
-
 }
 
+/* Transition for hero texts */
 @layer components {
-  
-  /* Transition for hero texts */
-  #hero h1,
-  #hero h2,
-  #hero p {
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
+    #hero h1,
+    #hero h2,
+    #hero p {
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
 
-  .nav-link {
-    @apply hover:bg-gray-800 p-1 px-4 rounded-2xl transition-colors duration-300 font-medium;
-  }
+    .nav-link {
+        @apply hover:bg-gray-800 p-1 px-4 rounded-2xl transition-colors duration-300 font-medium;
+    }
 
-  /* Product Card */
-  .product-card {
-    @apply relative overflow-hidden rounded-2xl shadow-2xl transition-transform duration-500 hover:-translate-y-0;
-  }
-  
-  .product-image {
-    @apply w-full h-full object-cover transition-transform duration-500;
-  }
-  
-  .product-overlay {
-    @apply absolute inset-y-0 right-0 w-1/2 bg-white/70 backdrop-blur-md translate-x-full 
-            transition-transform duration-700 ease-out;
-  }
-  
-  /* Overlay content */
-  .product-overlay-content {
-    @apply relative z-10 flex flex-col items-center justify-center h-full text-gray-800 p-4 text-center;
-  }
+    /* Product Card */
+    .product-card {
+        @apply relative overflow-hidden rounded-2xl shadow-2xl transition-transform duration-500 hover:-translate-y-0;
+    }
 
-  /* Button */
-  .add-to-cart-btn {
-    @apply px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-700 transition-colors;
-  }
-  
-  .fade-edge::before { content: ''; @apply absolute left-0 top-0 h-full w-6 bg-linear-to-l from-transparent to-white/70; }
+    .product-image {
+        @apply w-full h-full object-cover transition-transform duration-500;
+    }
 
-  /* Icons */
-  .icon {
-    @apply w-6 h-6;
-  }
+    .product-overlay {
+        @apply absolute inset-y-0 right-0 w-1/2 bg-white/70 backdrop-blur-md translate-x-full 
+        transition-transform duration-700 ease-out;
+    }
 
-  .carousel-nav-btn {
-    @apply bg-white/30 backdrop-blur-2xl rounded-2xl shadow-2xl p-2 m-4;
-  }
+    /* Overlay content */
+    .product-overlay-content {
+        @apply relative z-10 flex flex-col items-center justify-center h-full text-gray-800 p-4 text-center;
+    }
 
-  .slider-container {
-    @apply min-w-full grid grid-cols-3 gap-4 max-w-7xl mx-auto snap-start;
-  }
+    /* Button */
+    .add-to-cart-btn {
+        @apply px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-700 transition-colors;
+    }
 
-  .footer-link {
-    @apply hover:text-white transition-colors;
-  }
+    .fade-edge::before { content: ''; @apply absolute left-0 top-0 h-full w-6 bg-linear-to-l from-transparent to-white/70; }
+
+    /* Icons */
+    .icon {
+        @apply w-6 h-6;
+    }
+
+    .carousel-nav-btn {
+        @apply bg-white/30 backdrop-blur-2xl rounded-2xl shadow-2xl p-2 m-4;
+    }
+
+    .slider-container {
+        @apply min-w-full grid grid-cols-3 gap-4 max-w-7xl mx-auto snap-start;
+    }
+
+    .footer-link {
+        @apply hover:text-white transition-colors;
+    }
+
+    /* For Product Page */
+    #product-images-carousel-container {
+        @apply relative overflow-hidden;
+    }
+
+    #product-images {
+        @apply flex transition-transform duration-300 ease-in-out;
+    }
+
+    #product-images img {
+        @apply flex-shrink-0 w-full h-full object-cover rounded-lg;
+    }
+
+    .carousel-btn {
+        @apply absolute top-1/2 transform -translate-y-1/2 bg-white opacity-50 border-none rounded-full w-10 h-10 text-lg cursor-pointer transition-all duration-300 hover:opacity-100;
+    }
+
+    #img-prev {
+        @apply left-5;
+    }
+
+    #img-next {
+        @apply right-5;
+    }
+
+    #product-specifics-container div {
+        @apply w-full grid grid-rows-1 grid-cols-2 mb-2.5
+    }
+
+    #product-specifics-container h5 {
+        @apply inline w-fit text-sm font-semibold text-gray-900 uppercase tracking-wide;
+    }
+
+    #product-specifics-container p {
+        @apply inline w-fit text-gray-700;
+    }
 }

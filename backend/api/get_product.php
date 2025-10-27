@@ -9,8 +9,11 @@ $xml = simplexml_load_file($filepath);
 foreach ($xml->children() as $category) {
     foreach ($category->children() as $prod) {
         if ($prod["id"] == $prodID) {
+            $res = $prod;
+            $res->addChild("category", $category["name"]);
+
             header("Content-Type: application/xml; charset=utf-8");
-            echo $prod->asXML();
+            echo $res->asXML();
             exit;
         }
     }
