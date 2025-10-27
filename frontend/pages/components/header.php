@@ -4,11 +4,13 @@
         <div class="flex items-center justify-between h-16">
 
             <!-- Left Search bar -->
-            <form class="relative w-72">
+            <form class="relative w-72" method="GET" action="">
                 <input
                 type="text"
                 placeholder="Search product here..."
                 class="w-full pl-4 pr-10 py-2 rounded-full shadow-xl backdrop-blur-2xl hover:text-gray-200 placeholder-gray-400 transition-colors duration-300 focus:outline-none focus:ring-2 hover:bg-gray-800"
+                name="prodName"
+                id="prodName"
                 >
 
                 <!-- Icon inside input -->
@@ -21,7 +23,7 @@
 
             <!-- Center Navigation links -->
             <div class="flex space-x-8 justify-center flex-1">
-                <a href="#" class="nav-link">Home</a>
+                <a href="/" class="nav-link">Home</a>
                 <a href="#" class="nav-link">Catalog</a>
                 <a href="#" class="nav-link">About Us</a>
             </div>

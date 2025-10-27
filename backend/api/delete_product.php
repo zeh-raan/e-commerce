@@ -32,6 +32,14 @@ foreach ($xml->children() as $category) {
     foreach ($category->children() as $p) {
         if ((string)$p["id"] === $prodId) {
             
+            // Delete the images as well
+            foreach ($p->images->children() as $img) {
+                $fpath = substr(__DIR__, 0, strpos(__DIR__, "api")) . "data/images/" . (string)$img;
+                if (file_exists($fpath)) {
+                    unlink($fpath);
+                }
+            }
+
             // Deleting product
             $dom = dom_import_simplexml($p);
             $dom->parentNode->removeChild($dom);
@@ -41,8 +49,6 @@ foreach ($xml->children() as $category) {
         }
     }
 }
-
-// TODO: Delete the images as well
 
 // No products found
 if (!$prodFound) {

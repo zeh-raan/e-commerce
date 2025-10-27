@@ -16,11 +16,11 @@ session_start();
 <body>
     <?php include("frontend/pages/components/header.php"); ?>
 
-    <section id="product-here" class="mt-30 w-screen h-fit">
+    <section id="product-here" class="mt-30 w-screen h-fit mb-16">
         <h1 class="product-name w-fit m-auto text-center text-4xl font-bold px-4 pb-2 border-b-2 border-gray-200"></h1>
         <div id="product-display-container" class="grid grid-rows-1 grid-cols-2 px-8 py-8">
             <div id="product-images-carousel-container" class="m-4">
-                <div id="product-images" class="w-full h-100">
+                <div id="product-images" class="w-full h-150">
 
                 </div>
 
@@ -40,7 +40,15 @@ session_start();
                 <h3 class="text-gray-600 text-lg pb-2 border-gray-200 border-b-2">Details</h3>
                 <div id="product-specifics-container" class="space-y-2 pt-4 mb-4"></div>
 
-                <button id="add-to-cart-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer active:scale-95">Add to Cart</button>
+                <div id="product-action-btn-container" class="w-full h-fit flex gap-4">
+                    <button id="add-to-cart-btn" class="flex-1 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer active:scale-95">Add to Cart</button>
+
+                    <?php
+                    if (isset($_SESSION["username"])) { // Also add "if user was the one who made this" condition
+                        echo '<button id="add-to-cart-btn" class="flex-1 w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer active:scale-95">Edit</button>';
+                    }
+                    ?>
+                </div>
             </div>
         </div>
     </section>
