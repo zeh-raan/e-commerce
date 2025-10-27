@@ -22,51 +22,51 @@ if (!isset($_SESSION["username"])) {
 <body class="bg-slate-900 p-4">
     <form name="addProdForm" method="post" class="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-md h-full">
         <div class="grid grid-cols-2 gap-8 h-full">
-            
-            <!-- Left Column - Main Fields -->
             <div class="flex flex-col h-full">
                 <div class="space-y-4 flex-1">
                     <div>
                         <label for="prodCategory" class="block text-sm font-semibold text-gray-800 mb-2">Category</label>
                         <select name="prodCategory" id="prodCategory" class="w-full p-3 border border-gray-300 rounded-lg bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors">
                             <option value="Electronics">Electronics</option>
+                            <option value="Fashion">Fashion</option>
+                            <option value="Perfume">Perfume</option>
+                            <option value="Others">Others</option>
                         </select>
                     </div>
 
                     <div>
                         <label for="prodName" class="block text-sm font-semibold text-gray-800 mb-2">Name</label>
-                        <input type="text" name="prodName" id="prodName" placeholder="Product Name" class="w-full p-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors">
+                        <input required type="text" name="prodName" id="prodName" placeholder="Product Name" class="w-full p-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors">
                     </div>
 
                     <div>
                         <label for="prodDesc" class="block text-sm font-semibold text-gray-800 mb-2">Description</label>
-                        <textarea name="prodDesc" id="prodDesc" cols="30" rows="3" placeholder="Describe your product here..." class="w-full p-3 border border-gray-300 rounded-lg resize-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors"></textarea>
+                        <textarea required name="prodDesc" id="prodDesc" cols="30" rows="3" placeholder="Describe your product here..." class="w-full p-3 border border-gray-300 rounded-lg resize-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors"></textarea>
                     </div>
 
                     <div>
                         <label for="prodPrice" class="block text-sm font-semibold text-gray-800 mb-2">Price</label>
-                        <input type="text" name="prodPrice" id="prodPrice" class="w-full p-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors" oninput="this.value = this.value.replace(/[^0-9.-]/g, '')">
+                        <input required type="text" name="prodPrice" id="prodPrice" class="w-full p-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors" oninput="this.value = this.value.replace(/[^0-9.]/g, '')">
                     </div>
                 </div>
 
-                <!-- Images moved below details -->
                 <div id="prod-img-main-container" class="mt-6">
-                    <input type="file" name="prodImg" id="prodImg" accept="image/jpeg" class="w-full p-3 border-2 border-gray-300 border-dashed rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors cursor-pointer">
+                    <input required type="file" name="prodImg" id="prodImg" accept="image/jpeg,image/avif" class="w-full p-3 border-2 border-gray-300 border-dashed rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors cursor-pointer">
                 </div>
             </div>
 
-            <!-- Right Column - Product Details -->
+            <!-- Product Details -->
             <div class="flex flex-col h-full">
                 <div id="prod-details-main-container" class="flex-1">
                     <label class="block text-sm font-semibold text-gray-800 mb-3">Product Details</label>
                     
-                    <div id="prod-details-list-container" class="border border-gray-300 rounded-lg p-4 h-64 overflow-y-auto bg-gray-50">
+                    <div id="prod-details-list-container" class="border border-gray-300 rounded-lg p-4 h-fit max-h-56 overflow-y-auto bg-gray-50">
                         <div class="mb-4 p-3 bg-white rounded border border-gray-200">
                             <label for="prodDetailName1" class="block text-sm font-medium text-gray-700 mb-1">Detail Name</label>
-                            <input type="text" name="prodDetailName1" id="prodDetailName1" class="detail-name-input w-full p-2 border border-gray-300 rounded mb-2 focus:border-blue-500 focus:ring-1 focus:ring-blue-200">
+                            <input required type="text" name="prodDetailName1" id="prodDetailName1" class="detail-name-input w-full p-2 border border-gray-300 rounded mb-2 focus:border-blue-500 focus:ring-1 focus:ring-blue-200">
 
                             <label for="prodDetailValue1" class="block text-sm font-medium text-gray-700 mb-1">Detail Desc</label>
-                            <input type="text" name="prodDetailValue1" id="prodDetailValue1" class="detail-val-input w-full p-2 border border-gray-300 rounded focus:border-blue-500 focus:ring-1 focus:ring-blue-200">
+                            <input required type="text" name="prodDetailValue1" id="prodDetailValue1" class="detail-val-input w-full p-2 border border-gray-300 rounded focus:border-blue-500 focus:ring-1 focus:ring-blue-200">
                         </div>
                     </div>
 
@@ -74,6 +74,8 @@ if (!isset($_SESSION["username"])) {
                         Add detail
                     </button>
                 </div>
+
+                <!-- <div><p>Error message</p></div> -->
 
                 <div class="flex gap-3 pt-6 mt-auto">
                     <input type="submit" value="Add Product" class="flex-1 bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 focus:ring-2 focus:ring-green-200 transition-colors font-semibold">
@@ -104,17 +106,83 @@ if (!isset($_SESSION["username"])) {
 
         addDetailButton.addEventListener("click", () => {
             const detailsContainer = document.getElementById("prod-details-list-container");
-            detailsContainer.innerHTML += `
+            const newDetailDiv = document.createElement("div");
+            newDetailDiv.innerHTML += `
                 <div class="mb-4 border-dotted border-t-2 border-gray-400"></div>
                 <div class="mb-4 p-3 bg-white rounded border border-gray-200">
                     <label for="" class="block text-sm font-medium text-gray-700 mb-1">Detail Name</label>
-                    <input type="text" name="" class="detail-name-input w-full p-2 border border-gray-300 rounded mb-2">
+                    <input required type="text" name="" class="detail-name-input w-full p-2 border border-gray-300 rounded mb-2">
 
                     <label class="block text-sm font-medium text-gray-700 mb-1">Detail Desc</label>
-                    <input type="text" name="" class="detail-val-input w-full p-2 border border-gray-300 rounded">
+                    <input required type="text" name="" class="detail-val-input w-full p-2 border border-gray-300 rounded">
                 </div>
             `;
+
+            detailsContainer.appendChild(newDetailDiv);
         });
+
+        function validateForm() {
+            
+            // Validating form inputs
+            let name = addProdForm.prodName.value.trim();
+            if (name.length < 10) {
+                return "Name must be at least 10 characters long!";
+            }
+
+            let desc = addProdForm.prodDesc.value.trim();
+            if (desc.length < 50) {
+                return "Description must be at least 50 characters long!";
+            }
+
+            let price = addProdForm.prodPrice.value.trim();
+            const priceRegex = /^\d+(\.\d{1,2})?$/;
+
+            if (!priceRegex.test(price) || parseFloat(price) <= 0) {
+                return "Please enter a valid price!";
+            }
+
+            const details = extractDetailKeyValues();
+            for (let i = 0; i < details.length; i++) {
+                if (details[i].name.length < 3) {
+                    return `Please enter a valid detail name for Detail #${i + 1}`;
+                }
+
+                if (details[i].value.length < 3) {
+                    return `Please enter a valid detail value for Detail #${i + 1}`;
+                }
+            }
+
+            // Validating images
+            const uploadedImages = addProdForm.prodImg.files;
+
+            const allowedTypes = ["image/jpeg", "image/avif"];
+            const maxSize = 5 * 1024 * 1024;
+            const maxImages = 5;
+
+            // No images uploaded
+            if (uploadImages.length == 0) {
+                return "Please upload an image!";
+            }
+
+            // Exceeded max limit
+            if (uploadImages.length > maxImages) {
+                return `You can only upload a maximum of ${maxImages} images!`;
+            }
+
+            // Validate wach image size and file extension
+            for (let i = 0; i < uploadedImages.length; i++) {
+                const img = uploadImages[i];
+                if (!allowedTypes.includes(img.type) || !img.type.startsWith("image/")) {
+                    return `Type of Image #${i + 1} is unsupported!`;
+                }
+
+                if (img.size > maxSize) {
+                    return `Size of Image #${i + 1} exceeds limit (${maxSize / (1024 * 1024)} MB)!`;
+                }
+            }
+
+            return ""; // All good 👍
+        }
 
         function uploadImagesAjax(prodId) {
             const imageUploads = addProdForm.prodImg.files;
@@ -125,8 +193,6 @@ if (!isset($_SESSION["username"])) {
             for (let i = 0; i < imageUploads.length; i++) {
                 formData.append("images[]", imageUploads[i]);
             }
-
-            console.log(formData);
 
             // Makes AJAX request
             const xhr = new XMLHttpRequest();
@@ -151,7 +217,11 @@ if (!isset($_SESSION["username"])) {
             let price = addProdForm.prodPrice.value;
 
             // TODO: Validate data
-            // ...
+            let err = validateForm();
+            if (err) {
+                alert(err);
+                return;
+            }
 
             // Send JSON body
             let payload = {
@@ -179,6 +249,19 @@ if (!isset($_SESSION["username"])) {
             };
 
             xhr.send(JSON.stringify(payload));
+        });
+
+        addProdForm.addEventListener("reset", (e) => {
+            const detailsContainer = document.getElementById("prod-details-list-container");
+            detailsContainer.innerHTML = `
+                <div class="mb-4 p-3 bg-white rounded border border-gray-200">
+                    <label for="prodDetailName1" class="block text-sm font-medium text-gray-700 mb-1">Detail Name</label>
+                    <input required type="text" name="prodDetailName1" id="prodDetailName1" class="detail-name-input w-full p-2 border border-gray-300 rounded mb-2 focus:border-blue-500 focus:ring-1 focus:ring-blue-200">
+
+                    <label for="prodDetailValue1" class="block text-sm font-medium text-gray-700 mb-1">Detail Desc</label>
+                    <input required type="text" name="prodDetailValue1" id="prodDetailValue1" class="detail-val-input w-full p-2 border border-gray-300 rounded focus:border-blue-500 focus:ring-1 focus:ring-blue-200">
+                </div>
+            `;
         });
 
         window.onload = () => {};

@@ -27,9 +27,9 @@ function routePath(string $path) {
     // Set up Frontend routes
     // Handles routes with URL params/ids first (i.e. /product/123)
 
-    if (preg_match("#^product/(\d+)$#", $path, $matches)) {
+    if (preg_match("#^product/(prod_[a-f0-9]+)$#", $path, $matches)) {
         $prodID = $matches[1];
-        $frontendFilepath = __DIR__ . "/frontend/view_product.php";
+        $frontendFilepath = __DIR__ . "/frontend/pages/view_product.php";
 
         if (!(file_exists($frontendFilepath) && is_file($frontendFilepath))) {
             http_response_code(404);
@@ -51,7 +51,7 @@ function routePath(string $path) {
         return;
     }
 
-    $frontendFilepath = __DIR__ . "/frontend/" . $frontendRoutes[$path];
+    $frontendFilepath = __DIR__ . "/frontend/pages/" . $frontendRoutes[$path];
     if (!(file_exists($frontendFilepath) && is_file($frontendFilepath))) {
         http_response_code(404);
         header("Content-Type: application/json");
