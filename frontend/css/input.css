@@ -27,19 +27,21 @@
 
 /* Transition for hero texts */
 @layer components {
+    body {@apply bg-gray-100;}
+
     #hero h1,
     #hero h2,
     #hero p {
         transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
-    .nav-link {
-        @apply hover:bg-gray-800 p-1 px-4 rounded-2xl transition-colors duration-300 font-medium;
+    .links {
+        @apply font-medium hover:text-white transition-colors duration-300;
     }
 
     /* Product Card */
     .product-card {
-        @apply relative overflow-hidden rounded-2xl shadow-2xl transition-transform duration-500 hover:-translate-y-0;
+        @apply relative overflow-hidden rounded-2xl shadow-2xl transition-transform duration-500 hover:translate-y-0;
     }
 
     .product-image {
@@ -74,10 +76,6 @@
 
     .slider-container {
         @apply min-w-full grid grid-cols-3 gap-4 max-w-7xl mx-auto snap-start;
-    }
-
-    .footer-link {
-        @apply hover:text-white transition-colors;
     }
 
     /* For Product Page */
@@ -115,5 +113,18 @@
 
     #product-specifics-container p {
         @apply inline w-fit text-gray-700;
+    }
+
+    /* Catalog Page */
+    .catalog-drop {
+        @apply flex justify-between items-center cursor-pointer p-2 mb-2 hover:bg-gray-100 hover:rounded-2xl;
+    }
+
+    .catalog-box {
+        @apply flex items-center space-x-2;
+    }
+
+    .apply-filter-btn {
+        @apply w-full mt-4 rounded-2xl p-2 bg-black text-gray-400 hover:text-white transition-colors duration-300;
     }
 }
