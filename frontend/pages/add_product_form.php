@@ -14,12 +14,36 @@ if (!isset($_SESSION["username"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Add Your Product</title>
+    <title>Add a Product</title>
 
     <link rel="stylesheet" href="/frontend/css/output.css">
 </head>
 
-<body class="bg-slate-900 p-4">
+<body class="">
+    <?php include("frontend/pages/components/header.php"); ?>
+
+    <!-- TODO: Rework Form UI -->
+    <section id="add-product-section" class="mt-30 w-screen h-fit mb-16">
+        <form name="addProdForm" method="post" class="w-full grid grid-rows-1 grid-cols-2 px-8 py-8">
+
+            <!-- Image-related inputs -->
+            <div id="add-product-images-container" class="m-4 flex flex-col gap-4">
+                <div id="product-image-preview" class="w-full h-128 bg-white border-4 border-gray-200 border-dashed rounded-lg"></div>
+                <button type="button" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer active:scale-95">Add Image</button>
+            </div>
+
+            <!-- "Regular" inputs -->
+            <div id="add-product-text-container" class="p-4 h-full relative">
+
+                <!-- This code snippet is taken from https://flowbite.com/docs/forms/floating-label/ and iterated over -->
+                <div class="relative z-0">
+                    <input type="text" id="floating_standard" class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                    <label for="floating_standard" class="absolute text-sm text-black dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Name</label>
+                </div>
+            </div>
+        </form>
+    </section>
+
     <form name="addProdForm" method="post" class="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-md h-full">
         <div class="grid grid-cols-2 gap-8 h-full">
             <div class="flex flex-col h-full">
@@ -84,6 +108,8 @@ if (!isset($_SESSION["username"])) {
             </div>
         </div>
     </form>
+
+    <?php include("frontend/pages/components/footer.php"); ?>
 
     <script>
         const addProdForm = document.forms.addProdForm;

@@ -74,69 +74,68 @@ session_start(); // For per user customization
 
     <?php include("frontend/pages/components/footer.php"); ?>
 
-  <!-- Hero animations -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const subTitleEl = document.getElementById("hero-subtitle");
-      const titleEl = document.getElementById("hero-title");
-      const descEl = document.getElementById("hero-desc");
-      const featProd = document.getElementById("feat-product");
+    <!-- Hero animations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const subTitleEl = document.getElementById("hero-subtitle");
+            const titleEl = document.getElementById("hero-title");
+            const descEl = document.getElementById("hero-desc");
+            const featProd = document.getElementById("feat-product");
 
-      const subText = "Welcome to Our";
-      const mainText = "SHOP.";
-      let i = 0, j = 0;
+            const subText = "Welcome to Our";
+            const mainText = "SHOP.";
+            let i = 0, j = 0;
 
-      // Type "Welcome to"
-      function typeSub() {
-        if (i < subText.length) {
-          subTitleEl.textContent = subText.substring(0, i + 1);
-          subTitleEl.style.opacity = 1;
-          i++;
-          setTimeout(typeSub, 100);
-        } else {
-          setTimeout(typeMain, 400);
-        }
-      }
+            // Type "Welcome to"
+            function typeSub() {
+                if (i < subText.length) {
+                    subTitleEl.textContent = subText.substring(0, i + 1);
+                    subTitleEl.style.opacity = 1;
+                    i++;
+                    setTimeout(typeSub, 100);
+                } else {
+                    setTimeout(typeMain, 400);
+                }  
+            }
 
-      // Type "SHOP." with larger font size and lower opacity behind
-      function typeMain() {
-        if (j < mainText.length) {
-          titleEl.textContent = mainText.substring(0, j + 1);
-          titleEl.style.opacity = 0.4;
-          j++;
-          setTimeout(typeMain, 150);
-        } else {
-          setTimeout(() => {
-            descEl.style.opacity = 1; // Show paragraph
-            featProd.style.opacity = 1; // Show heading
-          }, 600);
-        }
-      }
+            // Type "SHOP." with larger font size and lower opacity behind
+            function typeMain() {
+                if (j < mainText.length) {
+                    titleEl.textContent = mainText.substring(0, j + 1);
+                    titleEl.style.opacity = 0.4;
+                    j++;
+                    setTimeout(typeMain, 150);
+                } else {
+                    setTimeout(() => {
+                        descEl.style.opacity = 1; // Show paragraph
+                        featProd.style.opacity = 1; // Show heading
+                        }, 600);
+                    }
+                }
 
-      // Call animation
-      typeSub();
-    });
+                // Call animation
+                typeSub();
+            });
 
-    // Carousel Effect
-    const carousel = document.getElementById('carousel');
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
+            // Carousel Effect
+            const carousel = document.getElementById('carousel');
+            const prevBtn = document.getElementById('prev');
+            const nextBtn = document.getElementById('next');
 
-    prevBtn.addEventListener('click', () => {
-      carousel.scrollBy({
-        left: -carousel.offsetWidth,
-        behavior: 'smooth'
-      });
-    });
+            prevBtn.addEventListener('click', () => {
+                carousel.scrollBy({
+                    left: -carousel.offsetWidth,
+                    behavior: 'smooth'
+                });
+            });
 
-    nextBtn.addEventListener('click', () => {
-        carousel.scrollBy({
-            left: carousel.offsetWidth,
-            behavior: 'smooth'
-        });
-    });
-
-  </script>
+            nextBtn.addEventListener('click', () => {
+                carousel.scrollBy({
+                    left: carousel.offsetWidth,
+                    behavior: 'smooth'
+                });
+            });
+    </script>
 
     <!-- 4 spaces tabs supremacy!! -->
     <script>
@@ -165,9 +164,18 @@ session_start(); // For per user customization
                 return;
             }
 
+            // Chooses five random products
+            const randomIndices = [];
+            while (randomIndices.length < 5) {
+                let rnd = Math.floor(Math.random() * products.length);
+                if (!randomIndices.includes(rnd)) {
+                    randomIndices.push(rnd);
+                }
+            }
+
             const productDetails = [];
-            for (let i = 0; i < products.length; i++) {
-                productDetails.push(getProductDetails(products[i]));
+            for (let i = 0; i < randomIndices.length; i++) {
+                productDetails.push(getProductDetails(products[randomIndices[i]]));
             }
 
             // TODO: Make this code better

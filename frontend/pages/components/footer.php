@@ -13,7 +13,7 @@
         <div>
             <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
             <ul class="space-y-2 text-gray-400">
-                <li><a href="#" class="footer-link">Home</a></li>
+                <li><a href="/" class="footer-link">Home</a></li>
                 <li><a href="#" class="footer-link">Products</a></li>
                 <li><a href="#" class="footer-link">About</a></li>
                 <li><a href="#" class="footer-link">Contact</a></li>
