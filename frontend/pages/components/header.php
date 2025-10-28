@@ -24,7 +24,7 @@
             <!-- Center Navigation links -->
             <div class="flex space-x-8 justify-center flex-1">
                 <a href="/" class="links">Home</a>
-                <a href="frontend/pages/catalog.php" class="links">Catalog</a>
+                <a href="/frontend/pages/catalog.php" class="links">Catalog</a>
                 <a href="#" class="links">About Us</a>
             </div>
 
@@ -33,7 +33,7 @@
                 <a href="#" class="p-2 rounded-full hover:bg-gray-500 transition-colors duration-300">
                     <img class="icon" src="/frontend/assets/icons/user.svg" alt="User">
                 </a>
-                <a href="#" class="p-2 rounded-full hover:bg-gray-500 transition-colors duration-300">
+                <a href="/frontend/pages/cart.php" class="p-2 rounded-full hover:bg-gray-500 transition-colors duration-300">
                     <img class="icon" src="/frontend/assets/icons/cart.svg" alt="Cart">
                 </a>
             </div>

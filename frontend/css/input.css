@@ -35,6 +35,10 @@
         transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
+    .section-layout {
+        @apply flex gap-2 m-10 mt-20;
+    }
+
     .links {
         @apply font-medium hover:text-white transition-colors duration-300;
     }
@@ -115,7 +119,7 @@
         @apply inline w-fit text-gray-700;
     }
 
-    /* Catalog Page */
+    /* For Catalog Page */
     .catalog-drop {
         @apply flex justify-between items-center cursor-pointer p-2 mb-2 hover:bg-gray-100 hover:rounded-2xl;
     }
@@ -124,7 +128,11 @@
         @apply flex items-center space-x-2;
     }
 
-    .apply-filter-btn {
-        @apply w-full mt-4 rounded-2xl p-2 bg-black text-gray-400 hover:text-white transition-colors duration-300;
+    .buttons {
+        @apply w-full rounded-full p-2 cursor-pointer bg-black text-gray-400 hover:text-white transition-colors duration-300;
+    }
+
+    .border-divider {
+        @apply border-t border-gray-200 pt-4;
     }
 }

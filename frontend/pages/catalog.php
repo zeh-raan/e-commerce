@@ -12,7 +12,7 @@
     <!-- Navigation Bar -->
     <?php include("components/header.php"); ?>
 
-    <section class="flex gap-2 m-10 mt-20">
+    <section class="section-layout">
         <!-- Sidebar -->
         <div class="bg-white w-64 p-6 rounded-2xl border border-gray-200 shadow-sm">
 
@@ -43,7 +43,7 @@
 
                 </ul>
 
-                <button type="button" id="apply-filter" class="apply-filter-btn">Apply Filter</button>
+                <button type="button" id="apply-filter" class="mt-4 buttons">Apply Filter</button>
 
             </form>
         </div>
@@ -131,6 +131,7 @@
 
             if (selected.length === 0) {
                 applied.innerHTML = `<span class='text-gray-400'>None</span>`;
+                
             } else {
                 selected.forEach(filter => {
                     const tag = document.createElement("div");
