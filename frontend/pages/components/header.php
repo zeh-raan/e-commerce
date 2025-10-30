@@ -23,17 +23,17 @@
 
             <!-- Center Navigation links -->
             <div class="flex space-x-8 justify-center flex-1">
-                <a href="/" class="nav-link">Home</a>
-                <a href="#" class="nav-link">Catalog</a>
-                <a href="#" class="nav-link">About Us</a>
+                <a href="/" class="links">Home</a>
+                <a href="/frontend/pages/catalog.php" class="links">Catalog</a>
+                <a href="#" class="links">About Us</a>
             </div>
 
             <!-- Right User & Cart -->
             <div class="flex items-center space-x-4">
-                <a href="#" class="p-2 rounded-full hover:bg-gray-800 transition-colors duration-300">
+                <a href="#" class="p-2 rounded-full hover:bg-gray-500 transition-colors duration-300">
                     <img class="icon" src="/frontend/assets/icons/user.svg" alt="User">
                 </a>
-                <a href="#" class="p-2 rounded-full hover:bg-gray-800 transition-colors duration-300">
+                <a href="/frontend/pages/cart.php" class="p-2 rounded-full hover:bg-gray-500 transition-colors duration-300">
                     <img class="icon" src="/frontend/assets/icons/cart.svg" alt="Cart">
                 </a>
             </div>

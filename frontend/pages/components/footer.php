@@ -13,10 +13,10 @@
         <div>
             <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
             <ul class="space-y-2 text-gray-400">
-                <li><a href="/" class="footer-link">Home</a></li>
-                <li><a href="#" class="footer-link">Products</a></li>
-                <li><a href="#" class="footer-link">About</a></li>
-                <li><a href="#" class="footer-link">Contact</a></li>
+                <li><a href="#" class="links">Home</a></li>
+                <li><a href="#" class="links">Products</a></li>
+                <li><a href="#" class="links">About</a></li>
+                <li><a href="#" class="links">Contact</a></li>
             </ul>
         </div>
 
@@ -24,8 +24,8 @@
         <div>
             <h3 class="text-lg font-semibold mb-4">Customer Service</h3>
             <ul class="space-y-2 text-gray-400">
-                <li><a href="#" class="footer-link">FAQ</a></li>
-                <li><a href="#" class="footer-link">Checkout</a></li>
+                <li><a href="#" class="links">FAQ</a></li>
+                <li><a href="#" class="links">Checkout</a></li>
             </ul>
         </div>
 
@@ -33,13 +33,13 @@
         <div>
             <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
             <div class="flex space-x-4">
-                <a href="#" class="footer-link">
+                <a href="#" class="links">
                     <img src="/frontend/assets/icons/facebook.svg" class="icon">
                 </a>
-                <a href="#" class="footer-link">
+                <a href="#" class="links">
                     <img src="/frontend/assets/icons/instagram.svg" class="icon">
                 </a>
-                <a href="#" class="footer-link">
+                <a href="#" class="links">
                     <img src="/frontend/assets/icons/whatsapp.svg" class="icon">
                 </a>
             </div>
@@ -47,7 +47,7 @@
     </div>
 
     <!-- Footer Bottom -->
-    <div class="mt-4 py-4 border-t border-black text-center text-gray-500 text-sm">
+    <div class="mt-2 py-2 border-t border-black text-center text-gray-500 text-sm">
         &copy; 2025 Shop. All rights reserved.
     </div>
 </footer>

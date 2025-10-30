@@ -1,6 +1,6 @@
 <?php
-$prodId = $GLOBALS["prodId"];
-session_start();
+// $prodId = $GLOBALS["prodId"];
+// session_start();
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ session_start();
 </head>
 
 <body>
-    <?php include("frontend/pages/components/header.php"); ?>
+    <?php ?>
 
     <section id="product-here" class="mt-30 w-screen h-fit mb-16">
         <h1 class="product-name w-fit m-auto text-center text-4xl font-bold px-4 pb-2 border-b-2 border-gray-200"></h1>
@@ -53,7 +53,7 @@ session_start();
         </div>
     </section>
 
-    <?php include("frontend/pages/components/footer.php"); ?>
+    <?php include("components/footer.php"); ?>
 
     <script>
         let currentImage = 0;

@@ -102,3 +102,8 @@ Follow these steps to get your development environment set up and operational:
    ```bash
    npx @tailwindcss/cli -i ./css/input.css -o ./css/output.css --watch
    ```
+
+   *Link to put inside `<head>` of each pages*
+   ```bash
+    <link href="/frontend/css/output.css" rel="stylesheet">
+   ```

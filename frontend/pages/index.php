@@ -8,12 +8,12 @@ session_start(); // For per user customization
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>File-based E-Commerce</title>
+    <title>Shop - Home</title>
 
-    <link href="frontend/css/output.css" rel="stylesheet">
+    <link href="/frontend/css/output.css" rel="stylesheet">
 </head>
 
-<body class="bg-gray-100">
+<body>
     <?php include("frontend/pages/components/header.php"); ?>
 
     <!-- Hero Section -->
@@ -34,13 +34,13 @@ session_start(); // For per user customization
 
     <!-- Featured Section -->
     <section id="catalog" class="flex overflow-x-hidden">
-        <!-- <button id="prev" class="carousel-nav-btn"><img class="w-30 h-30" src="/frontend/assets/icons/prev.svg"></button> -->
+        <!-- <button id="prev" class="carousel-nav-btn"><img class="w-30 h-30" src="/frontend/assets/icons/left.svg"></button> -->
         
         <div id="carousel" class="flex overflow-x-hidden snap-x snap-mandatory scroll-smooth space-x-6">
             <div id="products-display-here" class="slider-container overflow-x-hidden px-8"></div>
         </div>
 
-        <!-- <button id="next" class="carousel-nav-btn"><img class="w-30 h-30" src="/frontend/assets/icons/next.svg"></button> -->
+        <!-- <button id="next" class="carousel-nav-btn"><img class="w-30 h-30" src="/frontend/assets/icons/right.svg"></button> -->
     </section>
 
     <!-- Just for testing
