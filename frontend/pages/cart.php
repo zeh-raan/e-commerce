@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop - Cart</title>
 
+    <!-- Tailwind CLI -->
     <link href="/frontend/css/output.css" rel="stylesheet">
 </head>
 
@@ -46,7 +47,7 @@
             </div>
 
             <div class="border-divider space-y-5">
-                <button class="buttons"><a href="#">Checkout</a></button>
+                <button class="buttons"><a href="/frontend/pages/checkout.php">Checkout</a></button>
                 <a href="/frontend/pages/catalog.php" class="flex justify-center hover:text-gray-500">Continue Shopping</a>
             </div>
         </div>
