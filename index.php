@@ -1,9 +1,15 @@
 <?php
 // Router setup
 
+// TODO: Block access to manually using /backend/...
+// TODO: Block access to manually using /frontend/pages/...
+
 $frontendRoutes = [
     "" => "index.php",
     "product/add" => "add_product_form.php",
+    "cart" => "cart.php",
+    "catalog" => "catalog.php",
+    "checkout" => "checkout.php"
 ];
 
 function routePath(string $path) {

@@ -68,6 +68,9 @@ if (!isset($_SESSION["username"])) {
                 <select id="prodCategory" name="prodCategory" class="mb-6 block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                     <option value="" hidden selected>Choose a Category</option>
                     <option value="Electronics">Electronics</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Perfume">Perfume</option>
+                    <option value="Others">Others</option>
                 </select>
 
                 <div class="relative z-0">

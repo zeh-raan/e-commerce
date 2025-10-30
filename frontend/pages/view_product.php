@@ -1,5 +1,5 @@
 <?php
-// $prodId = $GLOBALS["prodId"];
+$prodId = $GLOBALS["prodId"];
 // session_start();
 ?>
 
@@ -10,11 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Product Page</title>
+
     <link rel="stylesheet" href="/frontend/css/output.css">
 </head>
 
 <body>
-    <?php ?>
+    <?php include("components/header.php"); ?>
 
     <section id="product-here" class="mt-30 w-screen h-fit mb-16">
         <h1 class="product-name w-fit m-auto text-center text-4xl font-bold px-4 pb-2 border-b-2 border-gray-200"></h1>
@@ -44,19 +45,22 @@
                     <button id="add-to-cart-btn" class="flex-1 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer active:scale-95">Add to Cart</button>
 
                     <?php
-                    if (isset($_SESSION["username"])) { // Also add "if user was the one who made this" condition
+                    if (isset($_SESSION["username"])) { // Also add "if user is an admin
                         echo '<button id="add-to-cart-btn" class="flex-1 w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer active:scale-95">Edit</button>';
                     }
                     ?>
                 </div>
+                <p id="in-cart-message" class="p-4 text-center text-sm text-gray-400 italic"></p>
             </div>
         </div>
     </section>
 
     <?php include("components/footer.php"); ?>
 
+    <script src="/frontend/js/cart.js"></script>
     <script>
         let currentImage = 0;
+        const addToCartBtn = document.getElementById("add-to-cart-btn");
 
         // Carousel logic
         function updateCarousel() {
@@ -80,8 +84,8 @@
             
             // Displaying category
             const catDisplay = document.getElementById("product-category")
-            let cat = product.getElementsByTagName("category")[0].childNodes[0].nodeValue;
-            catDisplay.innerText = cat;
+            let category = product.getElementsByTagName("category")[0].childNodes[0].nodeValue;
+            catDisplay.innerText = category;
 
             // Displaying name
             const nameDisplays = document.getElementsByClassName("product-name")
@@ -139,7 +143,21 @@
             xhr.send();
         };
 
+        function updateCartIndicator() {
+            document.getElementById("in-cart-message").innerText = `${getCart().find(prod => prod.product_id == "<?php echo $prodId ?>").quantity} in cart!`;
+        }
+
+        // Add to cart
+        addToCartBtn.addEventListener("click", (e) => {
+            if (addToCart("<?php echo $prodId ?>")) {
+                updateCartIndicator();
+            }
+        });
+
         window.onload = () => {
+            loadCart();
+            updateCartIndicator();
+
             getProductAjax();
             updateCarousel();
         };
