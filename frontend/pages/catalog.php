@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop - Catalog</title>
 
-    <link href="/frontend/css/output.css" rel="stylesheet">
+    <link href="/css/output.css" rel="stylesheet">
 </head>
 <body>
     
@@ -29,7 +29,7 @@
                         <div class="catalog-drop category-toggle">
                             <span class="font-medium">Category</span>
                             <img class="icon transition-transform duration-300"
-                                src="/frontend/assets/icons/right.svg" alt="toggle">
+                                src="/assets/icons/right.svg" alt="toggle">
                         </div>
 
                         <ul class="filter hidden pl-6 pb-3 space-y-2">
@@ -75,8 +75,8 @@
                 const icon = toggle.querySelector("img");
                 filterList.classList.toggle("hidden");
                 icon.src = filterList.classList.contains("hidden")
-                    ? "/frontend/assets/icons/right.svg"
-                    : "/frontend/assets/icons/down.svg";
+                    ? "/assets/icons/right.svg"
+                    : "/assets/icons/down.svg";
             });
         });
 
@@ -84,7 +84,7 @@
 
         // Fetch all products from backend
         async function loadProducts() {
-            const res     = await fetch("/backend/api/get_all_products.php");
+            const res     = await fetch("/api/get_all_products.php");
             const xmlText = await res.text();
             const parser  = new DOMParser();
             const xml     = parser.parseFromString(xmlText, "application/xml");
@@ -97,6 +97,7 @@
                 const categoryName = category.getAttribute("name");
 
                 category.querySelectorAll("product").forEach(prod => {
+                    const id = prod.getAttribute("id");
                     const name  = prod.querySelector("name").textContent;
                     const price = prod.querySelector("price").textContent;
                     const img   = prod.querySelector("img").textContent;
@@ -104,12 +105,14 @@
                     cardsHtml += `
                     <div class="product-card rounded-2xl shadow-md border border-gray-200 hover:shadow-lg transition duration-200 p-4 flex flex-col items-center" data-category="${categoryName}">
                         <div class="w-full h-48 bg-gray-100 rounded-xl overflow-hidden flex justify-center items-center">
-                            <img src="/backend/data/images/${img}" alt="${name}" class="object-cover h-full rounded-2xl">
+                            <img src="/api/get_image.php?imgName=${img}" alt="${name}" class="object-cover h-full rounded-2xl">
                         </div>
                         <div class="mt-3 text-center">
                             <h2 class="text-md font-semibold">${name}</h2>
-                            <p class="text-gray-600 text-sm">Rs${price}</p>
+                            <p class="text-gray-600 text-sm">MUR ${price}</p>
                         </div>
+
+                        <a href="/product/${id}" class="mt-2 font-medium text-xs text-blue-600 hover:underline">View</a>
                     </div>
                     `;
                 });
@@ -137,7 +140,7 @@
                     const tag = document.createElement("div");
                     tag.className = "flex items-center gap-2 border rounded-2xl px-3 py-1 text-sm border-gray-200 bg-gray-100";
                     tag.innerHTML = `<span>${filter}</span>
-                                    <img src="/frontend/assets/icons/close.svg" alt="remove" class="w-4 h-4 cursor-pointer remove-filter">`;
+                                    <img src="/assets/icons/close.svg" alt="remove" class="w-4 h-4 cursor-pointer remove-filter">`;
 
                     tag.querySelector(".remove-filter").addEventListener("click", () => {
                         document.querySelector(`input[value='${filter}']`).checked = false;

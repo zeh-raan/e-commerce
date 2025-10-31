@@ -16,7 +16,7 @@
                 <!-- Icon inside input -->
                 <div class="absolute inset-y-0 right-0 flex items-center pr-3 border-l border-gray-900 h-full">
                     <button type="submit" class="p-1">
-                        <img class="icon" src="/frontend/assets/icons/search.svg" alt="Search">
+                        <img class="icon" src="/assets/icons/search.svg" alt="Search">
                     </button>
                 </div>
             </form>
@@ -31,10 +31,10 @@
             <!-- Right User & Cart -->
             <div class="flex items-center space-x-4">
                 <a href="#" class="p-2 rounded-full hover:bg-gray-500 transition-colors duration-300">
-                    <img class="icon" src="/frontend/assets/icons/user.svg" alt="User">
+                    <img class="icon" src="/assets/icons/user.svg" alt="User">
                 </a>
                 <a href="/cart" class="p-2 rounded-full hover:bg-gray-500 transition-colors duration-300">
-                    <img class="icon" src="/frontend/assets/icons/cart.svg" alt="Cart">
+                    <img class="icon" src="/assets/icons/cart.svg" alt="Cart">
                 </a>
             </div>
         </div>

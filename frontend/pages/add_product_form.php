@@ -16,11 +16,11 @@ if (!isset($_SESSION["username"])) {
     
     <title>Add a Product</title>
 
-    <link rel="stylesheet" href="/frontend/css/output.css">
+    <link rel="stylesheet" href="/css/output.css">
 </head>
 
 <body class="">
-    <?php include("frontend/pages/components/header.php"); ?>
+    <?php include("components/header.php"); ?>
 
     <!-- Modal to show success/failure feedback -->
     <button id="toggle-modal-btn" data-target="status-modal" class="hidden" onclick="document.getElementById(this.dataset.target).classList.toggle('hidden')"></button>
@@ -110,7 +110,7 @@ if (!isset($_SESSION["username"])) {
         </form>
     </section>
 
-    <?php include("frontend/pages/components/footer.php"); ?>
+    <?php include("components/footer.php"); ?>
 
     <script>
         const addProdForm = document.forms.addProdForm;

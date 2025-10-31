@@ -11,7 +11,7 @@ $prodId = $GLOBALS["prodId"];
     
     <title>Product Page</title>
 
-    <link rel="stylesheet" href="/frontend/css/output.css">
+    <link rel="stylesheet" href="/css/output.css">
 </head>
 
 <body>
@@ -41,8 +41,9 @@ $prodId = $GLOBALS["prodId"];
                 <h3 class="text-gray-600 text-lg pb-2 border-gray-200 border-b-2">Details</h3>
                 <div id="product-specifics-container" class="space-y-2 pt-4 mb-4"></div>
 
-                <div id="product-action-btn-container" class="w-full h-fit flex gap-4">
+                <div id="product-action-btn-container" class="w-full h-fit flex flex-col gap-2">
                     <button id="add-to-cart-btn" class="flex-1 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer active:scale-95">Add to Cart</button>
+                    <button id="remove-from-cart-btn" class="hidden flex-1 w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer active:scale-95">Remove from Cart</button>
 
                     <?php
                     if (isset($_SESSION["username"])) { // Also add "if user is an admin
@@ -57,10 +58,11 @@ $prodId = $GLOBALS["prodId"];
 
     <?php include("components/footer.php"); ?>
 
-    <script src="/frontend/js/cart.js"></script>
+    <script src="/js/cart.js"></script>
     <script>
         let currentImage = 0;
         const addToCartBtn = document.getElementById("add-to-cart-btn");
+        const removeFromCartBtn = document.getElementById("remove-from-cart-btn");
 
         // Carousel logic
         function updateCarousel() {
@@ -144,12 +146,36 @@ $prodId = $GLOBALS["prodId"];
         };
 
         function updateCartIndicator() {
-            document.getElementById("in-cart-message").innerText = `${getCart().find(prod => prod.product_id == "<?php echo $prodId ?>").quantity} in cart!`;
+            let prodInCart = getCart().find(prod => prod.product_id == "<?php echo $prodId ?>");
+            if (prodInCart) {
+                document.getElementById("in-cart-message").innerText = `${prodInCart.quantity} in cart!`;
+
+                // Show "Remove from cart" button
+                if (prodInCart.quantity > 0) {
+                    removeFromCartBtn.classList.remove("hidden");
+                    return;
+                }
+
+                // Hides "Remove from cart" button
+                removeFromCartBtn.classList.add("hidden");
+            }
+
+            else {
+                removeFromCartBtn.classList.add("hidden");
+                document.getElementById("in-cart-message").innerText = `0 in cart!`;
+            }
         }
 
         // Add to cart
         addToCartBtn.addEventListener("click", (e) => {
             if (addToCart("<?php echo $prodId ?>")) {
+                updateCartIndicator();
+            }
+        });
+
+        // Remove from cart
+        removeFromCartBtn.addEventListener("click", (e) => {
+            if (removeFromCart("<?php echo $prodId ?>")) {
                 updateCartIndicator();
             }
         });

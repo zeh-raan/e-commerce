@@ -6,7 +6,7 @@
     <title>Shop - Checkout</title>
 
     <!-- Tailwind CLI -->
-    <link href="/frontend/css/output.css" rel="stylesheet">
+    <link href="/css/output.css" rel="stylesheet">
 </head>
 <body>
     
@@ -56,7 +56,7 @@
       <div class="flex gap-4">
         <button id="store-btn" type="button" 
             class="flex items-center gap-2 bg-gray-200 border border-gray-500 p-3 rounded-2xl hover:bg-gray-300 transition-colors duration-300;">
-          <img class="icon" src="/frontend/assets/icons/store.svg" alt="Store" /> Store Pickup
+          <img class="icon" src="/assets/icons/store.svg" alt="Store" /> Store Pickup
         </button>
       </div>
 
@@ -83,7 +83,7 @@
     <aside class="aside-layout">
       <div class="flex items-center justify-between p-4 cursor-pointer hover:text-gray-500 transition-colors duration-300" id="toggle-cart">
         <p class="font-bold pr-2">Review your cart</p>
-        <img id="cart-arrow" class="icon transition-transform duration-300" src="/frontend/assets/icons/right.svg">
+        <img id="cart-arrow" class="icon transition-transform duration-300" src="/assets/icons/right.svg">
       </div>
 
       <div id="review-cart" class="p-4 space-y-3 transition-all duration-300 ease-in-out"></div>
@@ -95,10 +95,9 @@
     <div id="popup">Checkout complete!</div>
   </section>
 
-  <!-- Footer -->
   <?php include("components/footer.php"); ?>
 
-  <!-- JavaScript -->
+  <script src="/js/cart.js"></script>  
   <script>
     const $ = s => document.querySelector(s);
 
@@ -136,9 +135,8 @@
     }
 
     /* ********** LOAD CART ********** */
-    async function loadCart() {
-      const res = await fetch("/backend/api/get_all_products.php");
-      const xml = new DOMParser().parseFromString(await res.text(), "application/xml");
+    function loadCart() {
+      const cartContents = getCart();
 
       let html = "", total = 0;
       xml.querySelectorAll("category").forEach(cat => {

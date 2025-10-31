@@ -6,7 +6,7 @@
     <title>Shop - Cart</title>
 
     <!-- Tailwind CLI -->
-    <link href="/frontend/css/output.css" rel="stylesheet">
+    <link href="/css/output.css" rel="stylesheet">
 </head>
 
 <body>
@@ -49,7 +49,7 @@
 
     <?php include("components/footer.php"); ?>
 
-    <script src="/frontend/js/cart.js"></script> <!-- Loads cart automatically -->
+    <script src="/js/cart.js"></script>
     <script>
         const cartProduct = document.getElementById("cart-products");
         const totalPriceMessage = document.getElementById("total-price");
@@ -88,7 +88,7 @@
                     <input type="number" min="1" max="10" value="${quantity}" data-id="${id}" class="quantity-input w-16 mx-auto rounded-lg p-1 text-center focus:ring-0 focus:bg-transparent">
 
                     <div class="flex justify-end pr-4">
-                        <img src="/frontend/assets/icons/delete.svg" data-id="${id}" class="icon cursor-pointer hover:opacity-70 delete-btn">
+                        <img src="/assets/icons/delete.svg" data-id="${id}" class="icon cursor-pointer hover:opacity-70 delete-btn">
                     </div>
                 </div>
             `;

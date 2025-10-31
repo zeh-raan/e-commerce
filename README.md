@@ -43,7 +43,6 @@ e-commerce/
 │   ├───css/ # Holds CSS files
 │   │   └───input.css 
 │   │
-├───ts/ # TypeScript files here!
 │   │
 │   └───index.php # main
 ```
@@ -55,7 +54,7 @@ Tech Stack| &nbsp;
 ---|---
 **Frontend** | HTML5
 &nbsp; | TailwindCSS *(through CLI)*
-&nbsp; | TypeScript *(includes AJAX)*
+&nbsp; | JavaScript *(includes AJAX)*
 **Backend**  | PHP
 **Data Files** | XML
 &nbsp; | JSON
@@ -71,39 +70,14 @@ Follow these steps to get your development environment set up and operational:
 
 2. **Install Dependencies**
     ```bash
-    cd frontend
     npm install
     ```
-
-3. **Build JS Files**  
-   *This can be done either from root or within `frontend/`*
-
-    ```bash
-    cd ..
-    tsc -p frontend
-    ```
+3. **Builds CSS files using Tailwind**  
+   ```bash
+   npx tailwindcss -i public/css/input.css -o public/css/output.css --watch
+   ```
 
 4. **Starts PHP Server**  
-   *This should be done from root!*
-
    ```bash
-   php -S localhost:8000
-   ```
-
-4. **Starts Tailwind CLI**  
-   *This should be done within `frontend/`*
-
-   ```bash
-   npm install tailwindcss @tailwindcss/cli
-   inside input.css
-   @import "tailwindcss"
-   ```
-   *Create output.css inside `css/`*
-   ```bash
-   npx @tailwindcss/cli -i ./css/input.css -o ./css/output.css --watch
-   ```
-
-   *Link to put inside `<head>` of each pages*
-   ```bash
-    <link href="/frontend/css/output.css" rel="stylesheet">
+   php -S localhost:8000 -t public
    ```

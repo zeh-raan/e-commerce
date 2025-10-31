@@ -37,7 +37,29 @@ function addToCart(product_id) {
 // Function to remove an item from card
 function removeFromCart(product_id) {
     try {
-        cart = cart.filter(prod => prod.product_id != product_id);
+        // Decrement quantity if product is already in cart
+        let alreadyInCart = cart.find(prod => prod.product_id == product_id);
+        if (alreadyInCart && alreadyInCart.quantity != 1) {
+            alreadyInCart.quantity--;
+        }
+
+        else {
+            cart = cart.filter(prod => prod.product_id != product_id); // Removes product entirely
+        }
+
+        saveCart();
+
+    } catch (e) { 
+        return;
+    }
+    
+    return true;
+}
+
+// Skips the decrementing stuff and just deletes the item from cart
+function fullyRemoveFromCart(product_id) {
+    try {
+        cart = cart.filter(prod => prod.product_id != product_id); // Removes product entirely
         saveCart();
 
     } catch (e) { 
