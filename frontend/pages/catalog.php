@@ -12,10 +12,28 @@
     <!-- Navigation Bar -->
     <?php include("components/header.php"); ?>
 
-    <section class="section-layout">
+    <form class="relative p-10 w-full mt-20" method="GET" action="">
+        <input
+        type="text"
+        placeholder="Search product here..."
+        class="w-full pl-4 pr-10 py-4 bg-white rounded-full shadow-xl backdrop-blur-2xl placeholder-gray-400 transition-colors duration-300 focus:outline-none focus:ring-2"
+        name="prodName"
+        id="prodName"
+        oninput="searchForProduct(this.value.trim());"
+        >
+
+        <!-- Icon inside input -->
+        <div class="absolute inset-y-0 right-10 flex items-center pr-3 h-full">
+            <button type="submit" class="p-1">
+                <img class="icon" src="/assets/icons/search.svg" alt="Search">
+            </button>
+        </div>
+    </form>
+
+    <section class="section-layout mt-0">
+
         <!-- Sidebar -->
         <div class="bg-white w-64 p-6 rounded-2xl border border-gray-200 shadow-sm">
-
             <div class="mb-4 p-2 border-b-2 border-gray-200">
                 <h1 class="text-lg font-semibold">Filter</h1>
             </div>
@@ -68,6 +86,8 @@
     <?php include("components/footer.php"); ?>
 
     <script>
+        let allProductsData;
+
         // Sidebar toggle open and close
         document.querySelectorAll(".category-toggle").forEach(toggle => {
             toggle.addEventListener("click", () => {
@@ -89,6 +109,8 @@
             const parser  = new DOMParser();
             const xml     = parser.parseFromString(xmlText, "application/xml");
 
+            allProductsData = xml;
+
             const categories = xml.querySelectorAll("category");
             let cardsHtml = "";
 
@@ -103,7 +125,7 @@
                     const img   = prod.querySelector("img").textContent;
 
                     cardsHtml += `
-                    <div class="product-card rounded-2xl shadow-md border border-gray-200 hover:shadow-lg transition duration-200 p-4 flex flex-col items-center" data-category="${categoryName}">
+                    <div class="product-card rounded-2xl shadow-md border border-gray-200 hover:shadow-lg transition duration-200 p-4 flex flex-col items-center" data-category="${categoryName}" data-name="${name}">
                         <div class="w-full h-48 bg-gray-100 rounded-xl overflow-hidden flex justify-center items-center">
                             <img src="/api/get_image.php?imgName=${img}" alt="${name}" class="object-cover h-full rounded-2xl">
                         </div>
@@ -120,9 +142,6 @@
 
             productsContainer.innerHTML = cardsHtml;
         }
-
-        // Call it initially
-        loadProducts();
 
         // Filter logic
         document.getElementById("apply-filter").addEventListener("click", () => {
@@ -157,8 +176,28 @@
                 const cat = card.getAttribute("data-category");
                 card.style.display = selected.length === 0 || selected.includes(cat) ? "flex" : "none";
             });
-
         });
+
+        function searchForProduct(name) {
+
+            // Show all cards
+            if (name.trim() == "") {
+                document.querySelectorAll(".product-card").forEach(card => {
+                    card.style.display = "flex";
+                });
+            }
+
+            document.querySelectorAll(".product-card").forEach(card => {
+                let cardName = card.dataset.name;
+                if (!cardName.includes(name)) {
+                    card.style.display = "none";
+                }
+            })
+        }
+
+        window.onload = () => {
+            loadProducts(); // Call it initially
+        }
     </script>
 
 

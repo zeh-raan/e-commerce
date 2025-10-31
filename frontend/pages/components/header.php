@@ -3,7 +3,7 @@
     <nav class="max-w-7xl mx-auto px-4">
         <div class="flex items-center justify-between h-16">
 
-            <!-- Left Search bar -->
+            <!-- Left Search bar 
             <form class="relative w-72" method="GET" action="">
                 <input
                 type="text"
@@ -13,19 +13,21 @@
                 id="prodName"
                 >
 
-                <!-- Icon inside input -->
                 <div class="absolute inset-y-0 right-0 flex items-center pr-3 border-l border-gray-900 h-full">
                     <button type="submit" class="p-1">
                         <img class="icon" src="/assets/icons/search.svg" alt="Search">
                     </button>
                 </div>
             </form>
+            -->
 
             <!-- Center Navigation links -->
-            <div class="flex space-x-8 justify-center flex-1">
-                <a href="/" class="links">Home</a>
-                <a href="/catalog" class="links">Catalog</a>
-                <a href="#" class="links">About Us</a>
+            <div class="flex space-x-8 flex-1 pl-2 items-end">
+                <h1 class="text-xl font-bold">Shop.</h1>
+
+                <a href="/" class="links pb-0.2">Home</a>
+                <a href="/catalog" class="links pb-0.2">Catalog</a>
+                <a href="#" class="links pb-0.2">About Us</a>
             </div>
 
             <!-- Right User & Cart -->
