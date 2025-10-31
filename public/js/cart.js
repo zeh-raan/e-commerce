@@ -69,6 +69,26 @@ function fullyRemoveFromCart(product_id) {
     return true;
 }
 
+// Function mainly for cart
+function changeQuantityInCart(product_id, amount) {
+    try {
+        // Decrement quantity if product is already in cart
+        let alreadyInCart = cart.find(prod => prod.product_id == product_id);
+        if (alreadyInCart) {
+            alreadyInCart.quantity = amount;
+            saveCart();
+        }
+
+        // If amount = 0, it will keep it in cart
+        // We can do something about here then (Remove it or idk)
+
+    } catch (e) { 
+        return;
+    }
+    
+    return true;
+}
+
 // Function to make life a bit easier
 function getCart() {
     return cart;

@@ -70,7 +70,7 @@
             // Get quantiy from cart 
             quantity = cart.find(prod => prod.product_id == id).quantity;
 
-            totalCount += quantity;
+            totalCount += Number(quantity);
             totalPrice += (quantity * Number(price));
 
             cartProduct.innerHTML += `
@@ -85,10 +85,12 @@
                     </div>
                     
                     <p class="text-center font-medium">MUR ${price}</p>
-                    <input type="number" min="1" max="10" value="${quantity}" data-id="${id}" class="quantity-input w-16 mx-auto rounded-lg p-1 text-center focus:ring-0 focus:bg-transparent">
+                    <input type="number" min="1" max="10" value="${quantity}" onchange="changeQuantityInCart('${id}', this.value); renderCart();" class="quantity-input w-16 mx-auto rounded-lg p-1 text-center focus:ring-0 focus:bg-transparent">
 
                     <div class="flex justify-end pr-4">
-                        <img src="/assets/icons/delete.svg" data-id="${id}" class="icon cursor-pointer hover:opacity-70 delete-btn">
+                        <button type="button" class="cursor-pointer hover:opacity-70 transition-all duration-200 delete-btn" onclick="fullyRemoveFromCart('${id}'); renderCart();">
+                            <img src="/assets/icons/delete.svg" data-id="${id}" class="icon red-filter">
+                        </button>
                     </div>
                 </div>
             `;
@@ -109,47 +111,23 @@
 
         // Render cart UI
         function renderCart() {
-            let total = 0;
+            totalCount = 0;
+            totalPrice = 0;
+
             cartProduct.innerHTML = "";
 
             getCart().forEach(item => {
-                console.log(item);
-
-                // TODO: Rewrite logic to calculate this
-                const itemTotal = item.price * item.quantity;
-                total += itemTotal;
-
                 getProduct(item.product_id);
             });
+            
+            // Clearts display
+            totalPriceMessage.innerText = "";
+            cartCount.innerText = "";
 
-            totalPriceMessage.textContent = totalPrice;
-            cartCount.textContent  = `You have ${totalCount} product${totalCount !== 1 ? "s" : ""} in your cart`;
+            totalPriceMessage.innerText = totalPrice;
+            cartCount.innerText = `You have ${totalCount} product${totalCount !== 1 ? "s" : ""} in your cart`;
 
             // attachEventListeners();
-        }
-
-        // Attach listeners to dynamic elements
-        function attachEventListeners() {
-            document.querySelectorAll(".quantity-input").forEach(input => {
-                input.addEventListener("input", e => {
-                    const id = e.target.dataset.id;
-                    const item = cart.find(p => p.id === id);
-                    if (item) {
-                        let val = parseInt(e.target.value) || 1;       
-                        val = Math.min(Math.max(val, 1), 10);         
-                        e.target.value = val;                         
-                        item.quantity = val;                           
-                    }
-                });
-            });
-
-            document.querySelectorAll(".delete-btn").forEach(btn => {
-                btn.addEventListener("click", e => {
-                    const id = e.target.dataset.id;
-                    cart = cart.filter(p => p.id !== id);
-                    renderCart();
-                });
-            });
         }
 
         window.onload = () => {

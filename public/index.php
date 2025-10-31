@@ -10,9 +10,6 @@ $frontendRoutes = [
     "cart" => "cart.php",
     "catalog" => "catalog.php",
     "checkout" => "checkout.php",
-
-    // Blocked paths
-    "frontend/pages/cart.php" => "error.php"
 ];
 
 $DIR = substr(__DIR__, 0, strpos(__DIR__, "public"));
@@ -45,22 +42,17 @@ function routePath(string $path) {
             
             // Set appropriate Content-Type headers
             $contentTypes = [
-                'css' => 'text/css',
-                'js' => 'application/javascript',
-                'png' => 'image/png',
-                'jpg' => 'image/jpeg',
-                'jpeg' => 'image/jpeg',
+                "css" => "text/css",
+                "js" => "application/javascript",
+                "png" => "image/png",
+                "jpg" => "image/jpeg",
+                "jpeg" => "image/jpeg",
                 "avif" => "image/avif",
-                'gif' => 'image/gif',
-                'svg' => 'image/svg+xml',
-                'ico' => 'image/x-icon',
-                'woff' => 'font/woff',
-                'woff2' => 'font/woff2',
-                'ttf' => 'font/ttf'
+                "svg" => "image/svg+xml",
             ];
             
             if (isset($contentTypes[$extension])) {
-                header('Content-Type: ' . $contentTypes[$extension]);
+                header("Content-Type: " . $contentTypes[$extension]);
             }
             
             readfile($staticFile);

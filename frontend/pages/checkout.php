@@ -136,7 +136,7 @@
 
     /* ********** LOAD CART ********** */
     function loadCart() {
-      const cartContents = getCart();
+      // const cartContents = getCart();
 
       let html = "", total = 0;
       xml.querySelectorAll("category").forEach(cat => {
