@@ -89,6 +89,13 @@ function changeQuantityInCart(product_id, amount) {
     return true;
 }
 
+// Throw the cart out the window
+function clearCart() {
+    cart = [];
+    saveCart();
+}
+
+
 // Function to make life a bit easier
 function getCart() {
     return cart;

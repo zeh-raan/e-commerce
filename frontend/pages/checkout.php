@@ -21,7 +21,7 @@
   <section class="section-layout mt-0">
     <!-- CONTACT FORM -->
     <div class="section-content">
-      <p class="p-4 text-gray-600 font-bold">Contact Information</p>
+      <p class="py-4 text-gray-600 font-bold">Contact Information</p>
 
       <form id="checkout-form" class="space-y-6">
         <div class="grid grid-cols-2 gap-4">
@@ -99,7 +99,10 @@
 
   <script src="/js/cart.js"></script>  
   <script>
-    const $ = s => document.querySelector(s);
+    const $ = s => document.querySelector(s); // JUST WHY!???????
+    
+    const cartDisplayContainer = document.getElementById("review-cart");
+    const cartTotalPriceIndicator = document.getElementById("cart-footer");
 
     /* ********** VALIDATION ********** */
     function showError(input, message = "") {
@@ -135,37 +138,45 @@
     }
 
     /* ********** LOAD CART ********** */
-    function loadCart() {
-      // const cartContents = getCart();
+    async function displayCart() {
+        let totalPrice = 0;
+        cartDisplayContainer.innerHTML = "";
+        cartTotalPriceIndicator.innerHTML = "";
 
-      let html = "", total = 0;
-      xml.querySelectorAll("category").forEach(cat => {
-        cat.querySelectorAll("product").forEach(p => {
-          const name = p.querySelector("name").textContent;
-          const price = parseFloat(p.querySelector("price").textContent);
-          const img = p.querySelector("img").textContent;
-          total += price;
-          html += `
-            <div class="flex justify-between items-center border-b border-gray-200 py-2">
-              <div class="flex items-center gap-4">
-                <img src="/backend/data/images/${img}" class="w-16 h-16 rounded-xl object-cover" />
-                <div>
-                  <p class="text-gray-500 text-sm">${cat.getAttribute("name")}</p>
-                  <p class="font-semibold">${name}</p>
+        getCart().forEach(async (item) => {
+            let res = await fetch("api/get_product.php?prodId=" + item.product_id);
+            let xml = new DOMParser().parseFromString(await res.text(), "application/xml");
+
+            let product = xml.getElementsByTagName("product")[0];
+            let category = product.getElementsByTagName("category")[0].childNodes[0].nodeValue;
+            let name = product.getElementsByTagName("name")[0].childNodes[0].nodeValue;
+            let price = product.getElementsByTagName("price")[0].childNodes[0].nodeValue;
+            let img = product.getElementsByTagName("img")[0].childNodes[0].nodeValue;
+
+            totalPrice += (Number(price) * item.quantity);
+
+            cartDisplayContainer.innerHTML += `
+                <div class="flex justify-between items-center border-b border-gray-200 py-2">
+                    <div class="flex items-center gap-4">
+                        <img src="/api/get_image.php?imgName=${img}" class="w-16 h-16 rounded-xl object-cover" />
+                        <div>
+                            <p class="text-gray-500 text-sm">${category}</p>
+                            <p class="font-semibold">${name}</p>
+                        </div>
+                    </div>
+                    <p class="font-medium pl-4">MUR ${price}</p>
                 </div>
-              </div>
-              <p class="font-medium pl-4">Rs${price}</p>
-            </div>`;
-            
-        });
-      });
+            `;
 
-      $("#review-cart").innerHTML = html;
-      $("#cart-footer").innerHTML = `
-        <div class="flex justify-between mt-4 font-bold text-lg border-t border-gray-300 pt-4">
-          <span>Total:</span><span>Rs${total}</span>
-        </div>
-        <div class="mt-4"><button id="done-btn" class="buttons w-full">Done</button></div>`;
+            cartTotalPriceIndicator.innerHTML = `
+                <div class="flex justify-between mt-4 font-bold text-lg border-t border-gray-300 pt-4">
+                    <span>Total:</span><span>MUR ${totalPrice}</span>
+                </div>
+                <div class="mt-4">
+                    <button id="done-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer active:scale-95">Done</button>
+                </div>
+            `;
+        });
     }
 
     /* ********** CART TOGGLE ********** */
@@ -206,7 +217,10 @@
       }
     });
 
-    loadCart();
+    window.onload = () => {
+        loadCart();
+        displayCart();
+    }
   </script>
 
 </body>
