@@ -3,6 +3,7 @@
 
 // TODO: Block access to manually using /backend/...
 // TODO: Block access to manually using /frontend/pages/...
+// TODO: Clean up this file
 
 $frontendRoutes = [
     "" => "index.php",
@@ -13,6 +14,16 @@ $frontendRoutes = [
 ];
 
 $DIR = substr(__DIR__, 0, strpos(__DIR__, "public"));
+
+// Tries to route to backend
+function routeToBackend(string $path) {
+    // ...
+}
+
+// Tries to route to frontend
+function routeToFrontend(string $path) {
+    // ...
+}
 
 function routePath(string $path) {
     global $DIR;
@@ -59,7 +70,7 @@ function routePath(string $path) {
             return;
         } else {
             http_response_code(404);
-            echo "Static file not found: " . $path;
+            echo json_encode(["error" => "Static file not found: " . $path]);
             return;
         }
     }
@@ -67,6 +78,24 @@ function routePath(string $path) {
     // Set up Frontend routes
     // Handles routes with URL params/ids first (i.e. /product/123)
 
+    // Path to edit product (i.e. /product/123/edit)
+    if (preg_match("#^product/(prod_[a-f0-9]+)/edit$#", $path, $matches)) {
+        $prodID = $matches[1];
+        $frontendFilepath = $DIR . "/frontend/pages/edit_product.php";
+
+        if (!(file_exists($frontendFilepath) && is_file($frontendFilepath))) {
+            http_response_code(404);
+            header("Content-Type: application/json");
+            echo json_encode([ "error" => "Edit Product Page does not exist!" ]);
+            return;
+        }
+
+        $GLOBALS["prodId"] = $prodID;
+        include($frontendFilepath);
+        return;
+    }
+
+    // Path to view product
     if (preg_match("#^product/(prod_[a-f0-9]+)$#", $path, $matches)) {
         $prodID = $matches[1];
         $frontendFilepath = $DIR . "/frontend/pages/view_product.php";
@@ -83,7 +112,7 @@ function routePath(string $path) {
         return;
     }
 
-    // Other "static" routes
+    // Other frontend files
     if (!isset($frontendRoutes[$path])) {
         http_response_code(404);
         header("Content-Type: application/json");
