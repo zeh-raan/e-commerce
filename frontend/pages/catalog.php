@@ -12,13 +12,13 @@
     <!-- Navigation Bar -->
     <?php include("components/header.php"); ?>
 
-    <form class="relative p-10 w-full mt-20" method="GET" action="">
+    <form class="relative p-10 w-full mt-20" method="GET" action="/catalog">
         <input
         type="text"
         placeholder="Search product here..."
         class="w-full pl-4 pr-10 py-4 bg-white rounded-full shadow-xl backdrop-blur-2xl placeholder-gray-400 transition-colors duration-300 focus:outline-none focus:ring-2"
         name="prodName"
-        id="prodName"
+        id="prodNameCatalog"
         oninput="searchForProduct(this.value.trim());"
         >
 
@@ -178,28 +178,42 @@
             });
         });
 
-        function searchForProduct(name) {
+        function searchForProduct() {
+            let name = document.getElementById("prodNameCatalog").value.trim();
 
             // Show all cards
-            if (name.trim() == "") {
+            if (name == "") {
                 document.querySelectorAll(".product-card").forEach(card => {
                     card.style.display = "flex";
                 });
+
+                return;
             }
 
+            // Searches for product
             document.querySelectorAll(".product-card").forEach(card => {
                 let cardName = card.dataset.name;
                 if (!cardName.includes(name)) {
                     card.style.display = "none";
                 }
-            })
+
+                else {
+                    card.style.display = "flex";
+                }
+            });
         }
 
         window.onload = () => {
             loadProducts(); // Call it initially
+
+            // If redirected from another page
+            <?php
+            if (isset($_GET["prodName"])) {
+                echo "document.getElementById('prodNameCatalog').value = '" . htmlspecialchars($_GET["prodName"]) . "';";
+                echo "setTimeout(searchForProduct, 100);"; // A small delay because it wasn't doing it immediately
+            }
+            ?>
         }
     </script>
-
-
 </body>
 </html>
