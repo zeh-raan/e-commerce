@@ -6,166 +6,135 @@
     <title>Shop - Cart</title>
 
     <!-- Tailwind CLI -->
-    <link href="/frontend/css/output.css" rel="stylesheet">
+    <link href="/css/output.css" rel="stylesheet">
 </head>
 
 <body>
-
-    <!-- Navigation Bar -->
     <?php include("components/header.php"); ?>
 
-    <!-- Heading -->
+    <!-- Title text -->
     <div class="m-10 mb-0 mt-20">        
-        <h1 class="w-full font-bold p-4 text-2xl">Shopping Cart</h1>
-        <p id="cart-count" class="p-4 text-gray-600"></p>
+        <h1 class="w-full font-bold pl-4 pt-8 text-2xl">Shopping Cart</h1>
+        <p id="cart-count" class="pl-4 pb-8 text-gray-600"></p>
     </div>
 
     <section class="section-layout mt-0">
-    
-    <!-- Cart Layout -->
-    <div class="flex-1 bg-white rounded-2xl shadow-xl p-6">
-        
-        <!-- Header -->
-        <div class="grid grid-cols-[2fr_1fr_1fr_auto] items-center font-bold border-b-2 border-gray-200 pb-2">
-            <p>Product</p>
-            <p class="text-center">Price</p>
-            <p class="text-center">Quantity</p>
-            <p class="text-right pr-4">Delete</p>
-        </div>
-        
-        <!-- Product container -->
-        <div id="cart-products" class="flex flex-col gap-4 mt-4"></div>
-
-    </div>
-
-    <!-- Summary -->
-    <div class="bg-white w-64 p-6 rounded-2xl border border-gray-200 shadow-sm h-fit">
-        <div class="space-y-4">
-            <button id="save-changes-btn" class="buttons">Save Changes</button>
-            <div class="font-semibold text-lg border-divider">
-                <p>Total: Rs<span id="total-price">0</span></p>
+        <div class="flex-1 bg-white rounded-2xl shadow-xl p-6">
+            
+            <!-- Column names -->
+            <div class="grid grid-cols-[2fr_1fr_1fr_auto] items-center font-bold border-b-2 border-gray-200 pb-2">
+                <p>Product</p>
+                <p class="text-center">Price</p>
+                <p class="text-center">Quantity</p>
+                <p class="text-right pr-4">Delete</p>
             </div>
-
-            <div class="border-divider space-y-5">
-                <button class="buttons"><a href="/frontend/pages/checkout.php">Checkout</a></button>
-                <a href="/frontend/pages/catalog.php" class="flex justify-center hover:text-gray-500">Continue Shopping</a>
-            </div>
+            
+            <div id="cart-products" class="flex flex-col gap-4 mt-4"></div>
         </div>
 
-    </div>
+        <!-- Summary -->
+        <div class="bg-white w-64 p-6 rounded-2xl border border-gray-200 shadow-sm h-fit">
+            <div class="space-y-4">
+                <div class="font-semibold text-lg">
+                    <p>Total: MUR <span id="total-price">0</span></p>
+                </div>
 
+                <div class="border-divider space-y-5">
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer active:scale-95" onclick="window.location.href = '/checkout'">Checkout</button>
+                    <button class="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer active:scale-95" onclick="clearCart(); renderCart();">Clear Cart</button>
+                    <a href="/catalog" class="flex justify-center font-medium text-md text-blue-600 hover:underline">Continue Shopping</a>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Footer -->
     <?php include("components/footer.php"); ?>
 
+    <script src="/js/cart.js"></script>
     <script>
         const cartProduct = document.getElementById("cart-products");
-        const totalPrice  = document.getElementById("total-price");
-        const cartCount   = document.getElementById("cart-count");
-        const saveBtn     = document.getElementById("save-changes-btn");
+        const totalPriceMessage = document.getElementById("total-price");
+        const cartCount = document.getElementById("cart-count");
 
-        let cart = [];
+        let totalCount = 0;
+        let totalPrice = 0;
 
-        async function loadCart() {
-            const res     = await fetch("/backend/api/get_all_products.php");
-            const xmlText = await res.text();
-            const parser  = new DOMParser();
-            const xml     = parser.parseFromString(xmlText, "application/xml");
+        function addToDisplay(xml) {
+            let product = xml.getElementsByTagName("product")[0];
 
-            cart = []; // reset
+            let id = product.getAttribute("id");
+            let category = product.getElementsByTagName("category")[0].childNodes[0].nodeValue;
+            let name = product.getElementsByTagName("name")[0].childNodes[0].nodeValue;
+            let price = product.getElementsByTagName("price")[0].childNodes[0].nodeValue;
+            let img = product.getElementsByTagName("img")[0].childNodes[0].nodeValue;
+            
+            // Get quantiy from cart 
+            quantity = cart.find(prod => prod.product_id == id).quantity;
 
-            xml.querySelectorAll("category").forEach(category => {
-                const categoryName = category.getAttribute("name");
-                
-                category.querySelectorAll("product").forEach(prod => {
-                    const id       = prod.getAttribute("id");
-                    const name     = prod.querySelector("name").textContent;
-                    const price    = prod.querySelector("price").textContent;
-                    const img      = prod.querySelector("img").textContent;
-                    const detail   = prod.querySelector("dt").textContent;
-                    const quantity = 1;
+            totalCount += Number(quantity);
+            totalPrice += (quantity * Number(price));
 
-                    cart.push({ id, name, categoryName, price, img, detail, quantity });
-                });
-            });
+            cartProduct.innerHTML += `
+                <div class="grid grid-cols-[2fr_1fr_1fr_auto] items-center border-b border-gray-200 pb-2 gap-4">
+                    <div class="flex items-center gap-4">
+                        <img src="/api/get_image.php?imgName=${img}" class="w-30 h-30 object-cover rounded-xl">
+                        <div>
+                            <p class="text-gray-500 text-sm">${category}</p>
+                            <h2 class="text-md font-semibold">${name}</h2>
+                            <a href="/product/${id}" class="font-medium text-xs text-blue-600 hover:underline">Go to Product</a>
+                        </div>
+                    </div>
+                    
+                    <p class="text-center font-medium">MUR ${price}</p>
+                    <input type="number" min="1" max="10" value="${quantity}" onchange="changeQuantityInCart('${id}', this.value); renderCart();" class="quantity-input w-16 mx-auto rounded-lg p-1 text-center focus:ring-0 focus:bg-transparent">
 
-            renderCart();
+                    <div class="flex justify-end pr-4">
+                        <button type="button" class="cursor-pointer hover:opacity-70 transition-all duration-200 delete-btn" onclick="fullyRemoveFromCart('${id}'); renderCart();">
+                            <img src="/assets/icons/delete.svg" data-id="${id}" class="icon red-filter">
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Helper function to just fetch details and return relevant strings
+        function getProduct(product_id) {
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = () => {
+                if ((xhr.readyState == 4) && (xhr.status == 200)) {
+                    addToDisplay(xhr.responseXML);
+                }
+            };
+
+            xhr.open("GET", "/api/get_product.php?prodId=" + product_id, false); // Let's not make it async
+            xhr.send();
         }
 
         // Render cart UI
         function renderCart() {
-            let total = 0;
-            let cartHTML = "";
+            totalCount = 0;
+            totalPrice = 0;
 
-            cart.forEach(item => {
-                const itemTotal = item.price * item.quantity;
-                total += itemTotal;
+            cartProduct.innerHTML = "";
 
-                cartHTML += `
-                        <div class="grid grid-cols-[2fr_1fr_1fr_auto] items-center border-b border-gray-200 pb-2 gap-4">
-
-                        <div class="flex items-center gap-4">
-                            <img src="/backend/data/images/${item.img}" class="w-30 h-30 object-cover rounded-xl">
-                            <div>
-                                <p class="text-gray-500 text-sm">${item.categoryName}</p>
-                                <h2 class="text-md font-semibold">${item.name}</h2>
-                                <p class="text-sm text-gray-500">Detail: <span class="font-bold">${item.detail}</span></p>
-                            </div>
-                        </div>
-                        
-                        <p class="text-center font-medium">Rs${item.price}</p>
-                        <input type="number" min="1" max="10" value="${item.quantity}" data-id="${item.id}" class="quantity-input w-16 mx-auto border rounded-lg p-1 text-center">
-
-                        <div class="flex justify-end pr-4">
-                            <img src="/frontend/assets/icons/delete.svg" data-id="${item.id}" class="icon cursor-pointer hover:opacity-70 delete-btn">
-                        </div>
-
-                    </div>
-                `;
+            getCart().forEach(item => {
+                getProduct(item.product_id);
             });
+            
+            // Clearts display
+            totalPriceMessage.innerText = "";
+            cartCount.innerText = "";
 
-            cartProduct.innerHTML  = cartHTML;
-            totalPrice.textContent = total;
-            cartCount.textContent  = `You have ${cart.length} product${cart.length !== 1 ? "s" : ""} in your cart`;
+            totalPriceMessage.innerText = totalPrice;
+            cartCount.innerText = `You have ${totalCount} product${totalCount !== 1 ? "s" : ""} in your cart`;
 
-            attachEventListeners();
+            // attachEventListeners();
         }
 
-        // Attach listeners to dynamic elements
-        function attachEventListeners() {
-            document.querySelectorAll(".quantity-input").forEach(input => {
-                input.addEventListener("input", e => {
-                    const id = e.target.dataset.id;
-                    const item = cart.find(p => p.id === id);
-                    if (item) {
-                        let val = parseInt(e.target.value) || 1;       
-                        val = Math.min(Math.max(val, 1), 10);         
-                        e.target.value = val;                         
-                        item.quantity = val;                           
-                    }
-                });
-            });
-
-            document.querySelectorAll(".delete-btn").forEach(btn => {
-                btn.addEventListener("click", e => {
-                    const id = e.target.dataset.id;
-                    cart = cart.filter(p => p.id !== id);
-                    renderCart();
-                });
-            });
-        }
-
-        // Save changes button
-        saveBtn.addEventListener("click", () => {
-            let total = 0;
-            cart.forEach(item => total += item.price * item.quantity);
-            totalPrice.textContent = total;
-            cartCount.textContent = `You have ${cart.length} product${cart.length !== 1 ? "s" : ""} in your cart`;
-        });
-
-        loadCart();
+        window.onload = () => {
+            loadCart();
+            renderCart();
+        }        
     </script>
-
 </body>
 </html>

@@ -6,6 +6,10 @@ if (!isset($_SESSION["username"])) {
     header("Location: /");
 }
 */
+
+// NOTE: "prodName" was changed to "prodNameInForm" because it conflicts
+//       with "prodName" in search bar (in header)
+// TODO: Fix that!
 ?>
 
 <!DOCTYPE html>
@@ -16,11 +20,11 @@ if (!isset($_SESSION["username"])) {
     
     <title>Add a Product</title>
 
-    <link rel="stylesheet" href="/frontend/css/output.css">
+    <link rel="stylesheet" href="/css/output.css">
 </head>
 
 <body class="">
-    <?php include("frontend/pages/components/header.php"); ?>
+    <?php include("components/header.php"); ?>
 
     <!-- Modal to show success/failure feedback -->
     <button id="toggle-modal-btn" data-target="status-modal" class="hidden" onclick="document.getElementById(this.dataset.target).classList.toggle('hidden')"></button>
@@ -68,11 +72,14 @@ if (!isset($_SESSION["username"])) {
                 <select id="prodCategory" name="prodCategory" class="mb-6 block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                     <option value="" hidden selected>Choose a Category</option>
                     <option value="Electronics">Electronics</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Perfume">Perfume</option>
+                    <option value="Others">Others</option>
                 </select>
 
                 <div class="relative z-0">
-                    <input type="text" id="prodName" name="prodName" class="mb-6 block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                    <label for="prodName" class="absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Name</label>
+                    <input type="text" id="prodNameInForm" name="prodNameInForm" class="mb-6 block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                    <label for="prodNameInForm" class="absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Name</label>
                 </div>
 
                 <div class="relative z-0">
@@ -87,10 +94,10 @@ if (!isset($_SESSION["username"])) {
                 <div id="add-details-container" class="pt-4 mb-4 flex flex-col gap-4">
                     <div class="detail-wrapper flex gap-4">
                         <label class="text-nowrap text-gray-400">Detail Name</label>
-                        <input type="text" class="flex-1 detail-name-input border-b-2 border-solid border-gray-400 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                        <input type="text" class="w-[30%] detail-name-input border-b-2 border-solid border-gray-400 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
 
                         <label class="text-nowrap text-gray-400">Detail Value</label>
-                        <input type="text" class="flex-1 detail-val-input border-b-2 border-solid border-gray-400 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                        <input type="text" class="2-[30%] detail-val-input border-b-2 border-solid border-gray-400 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                     </div>
 
                     <div id="add-details-btn-container" class="flex gap-4">
@@ -107,7 +114,7 @@ if (!isset($_SESSION["username"])) {
         </form>
     </section>
 
-    <?php include("frontend/pages/components/footer.php"); ?>
+    <?php include("components/footer.php"); ?>
 
     <script>
         const addProdForm = document.forms.addProdForm;
@@ -276,7 +283,7 @@ if (!isset($_SESSION["username"])) {
                 return "Please choose a category!";
             }
 
-            let name = addProdForm.prodName.value.trim();
+            let name = addProdForm.prodNameInForm.value.trim();
             if (name.length < 10) {
                 return "Name must be at least 10 characters long!";
             }
@@ -341,7 +348,7 @@ if (!isset($_SESSION["username"])) {
 
             // Catching inputs
             let category = addProdForm.prodCategory.value;
-            let name = addProdForm.prodName.value.trim();
+            let name = addProdForm.prodNameInForm.value.trim();
             let desc = addProdForm.prodDesc.value.trim();
             let price = addProdForm.prodPrice.value;
 

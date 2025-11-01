@@ -10,15 +10,17 @@ session_start(); // For per user customization
 
     <title>Shop - Home</title>
 
-    <link href="/frontend/css/output.css" rel="stylesheet">
+    <link href="/css/output.css" rel="stylesheet">
 </head>
 
 <body>
-    <?php include("frontend/pages/components/header.php"); ?>
+    <?php include("components/header.php"); ?>
 
     <!-- Hero Section -->
-    <section id="hero" class="relative h-96 flex flex-col items-center justify-center bg-[url('/frontend/assets/images/bghero.avif')] bg-cover bg-center text-center">
-        <div class="relative">
+    <section id="hero" class="relative h-96 flex flex-col items-center justify-center bg-cover bg-center text-center">
+        <img src="/assets/images/bghero.avif" class="absolute top-0 left-0 -z-100 w-[100%]">
+
+        <div class="relative mt-20">
             <h2 id="hero-subtitle" class="text-3xl text-white font-bold mt-7 mr-20 opacity-0"></h2>
             <h1 id="hero-title" class="text-8xl font-extrabold text-white opacity-0 absolute left-1/2 -translate-x-1/2 -top-10 tracking-wide mix-blend-overlay"></h1>
         </div>
@@ -28,12 +30,10 @@ session_start(); // For per user customization
         </p>
     </section>
 
-    <!-- Section Divider -->
-    <img class="absolute opacity-40" src="/frontend/assets/icons/divider.svg">
     <h1 id="feat-product" class="text-5xl font-bold mx-16 my-12 opacity-0 transition-opacity duration-700">Featured Products.</h1>
 
     <!-- Featured Section -->
-    <section id="catalog" class="flex overflow-x-hidden">
+    <section id="catalog" class="overflow-x-hidden">
         <!-- <button id="prev" class="carousel-nav-btn"><img class="w-30 h-30" src="/frontend/assets/icons/left.svg"></button> -->
         
         <div id="carousel" class="flex overflow-x-hidden snap-x snap-mandatory scroll-smooth space-x-6">
@@ -72,7 +72,7 @@ session_start(); // For per user customization
     </script>
     -->
 
-    <?php include("frontend/pages/components/footer.php"); ?>
+    <?php include("components/footer.php"); ?>
 
     <!-- Hero animations -->
     <script>
@@ -115,25 +115,6 @@ session_start(); // For per user customization
 
                 // Call animation
                 typeSub();
-            });
-
-            // Carousel Effect
-            const carousel = document.getElementById('carousel');
-            const prevBtn = document.getElementById('prev');
-            const nextBtn = document.getElementById('next');
-
-            prevBtn.addEventListener('click', () => {
-                carousel.scrollBy({
-                    left: -carousel.offsetWidth,
-                    behavior: 'smooth'
-                });
-            });
-
-            nextBtn.addEventListener('click', () => {
-                carousel.scrollBy({
-                    left: carousel.offsetWidth,
-                    behavior: 'smooth'
-                });
             });
     </script>
 
