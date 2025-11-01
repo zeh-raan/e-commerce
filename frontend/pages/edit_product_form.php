@@ -258,7 +258,7 @@ $prodId = $GLOBALS["prodId"];
             // Handling images
             // Converts to JSON string for easier comparison
             if (JSON.stringify(currentState.images) != JSON.stringify(initialState.images)) {
-                differencePayload.images = currentState.images;
+                differencePayload.images = currentState.images.filter(img => !initialState.images.includes(img));
             } 
 
             // Handling details
@@ -282,6 +282,7 @@ $prodId = $GLOBALS["prodId"];
             
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
+                productImages.push(file.name);
                 
                 const imgWrapper = document.createElement("div");
                 imgWrapper.className = "relative inline-block m-2";
@@ -440,7 +441,7 @@ $prodId = $GLOBALS["prodId"];
             e.preventDefault();
 
             const differencePayload = compareChanges();
-            if (!differencePayload.length) {
+            if (Object.keys(differencePayload).length == 0) {
                 modalStatusMessage.innerHTML = `<h1>No Changes</h1><p>No changes were made to the product.</p>`;
                 showModalBtn.click();
                 return;
@@ -453,60 +454,82 @@ $prodId = $GLOBALS["prodId"];
                 return;
             }
 
-            let payload = {
-                product_id: "<?php echo $prodId; ?>",
-                category: editProdForm.prodCategory.value,
-                name: editProdForm.prodNameInForm.value.trim(),
-                desc: editProdForm.prodDesc.value.trim(),
-                price: editProdForm.prodPrice.value,
-                details: extractDetailKeyValues(),
-            };
+            // Prepares to send
+            differencePayload.product_id = "<?php echo $prodId; ?>";
 
             const xhr = new XMLHttpRequest();
-            xhr.open("POST", "/api/edit_product.php", true);
+            xhr.open("POST", "/api/update_product.php", true);
             xhr.setRequestHeader("Content-type", "application/json");
             xhr.onreadystatechange = () => {
                 if ((xhr.readyState == 4) && (xhr.status == 200)) {
                     let res = JSON.parse(xhr.responseText);
-                    if (res.success) {
-                        // Handle image upload if there are new images
-                        const uploadedImages = editProdForm.prodImg.files;
-                        if (uploadedImages.length > 0) {
-                            uploadImagesAjax("<?php echo $prodId; ?>");
-                        } else {
-                            modalStatusMessage.innerHTML = `<h1>Success!</h1><p>Product updated successfully!</p><a href="/product/<?php echo $prodId; ?>">View updated product</a>`;
-                            showModalBtn.click();
-                            storeInitialState(); // Update initial state after successful save
-                        }
-                    } else {
-                        modalStatusMessage.innerHTML = `<h1>Error!</h1><p>${res.error || "Failed to update product"}</p>`;
-                        showModalBtn.click();
-                    }
+
+                    // Handle image upload
+                    const uploadedImages = editProdForm.prodImg.files;
+                    uploadImagesAjax("<?php echo $prodId; ?>");
                 }
             };
-            xhr.send(JSON.stringify(payload));
+            
+            xhr.send(JSON.stringify(differencePayload));
         });
 
         function uploadImagesAjax(prodId) {
             const imageUploads = editProdForm.prodImg.files;
-            const formData = new FormData();
+            const imagesToDelete = initialState.images.filter(img => !productImages.includes(img));
 
+            // Delete images
+            if (imagesToDelete.length > 0) {
+                const deletePayload = {
+                    prodId: prodId,
+                    imagesToDelete: imagesToDelete
+                };
+
+                const deleteXhr = new XMLHttpRequest();
+                deleteXhr.open("POST", "/api/delete_image.php", true);
+                deleteXhr.setRequestHeader("Content-type", "application/json");
+                deleteXhr.onreadystatechange = () => {
+
+                    // Proceed with uploading new images
+                    if ((deleteXhr.readyState == 4) && (deleteXhr.status == 200)) {
+                        uploadNewImages(prodId, imageUploads);
+                    }
+                };
+
+                deleteXhr.send(JSON.stringify(deletePayload));
+            } 
+            
+            // No images to delete, just add new ones
+            else {
+                uploadNewImages(prodId, imageUploads);
+            }
+        }
+
+        function uploadNewImages(prodId, imageUploads) {
+            if (imageUploads.length === 0) {
+                modalStatusMessage.innerHTML = `<h1>Success!</h1><p>Images updated successfully!</p><a href="/product/${prodId}">View updated product</a>`;
+                showModalBtn.click();
+                loadProductData();
+                return;
+            }
+
+            const formData = new FormData();
             formData.append("prodId", prodId);
+
             for (let i = 0; i < imageUploads.length; i++) {
                 formData.append("images[]", imageUploads[i]);
             }
 
-            const xhr = new XMLHttpRequest();
-            xhr.open("POST", "/api/add_image.php", true);
-            xhr.onreadystatechange = () => {
-                if ((xhr.readyState == 4) && (xhr.status == 200)) {
-                    let res = JSON.parse(xhr.responseText);
-                    modalStatusMessage.innerHTML = `<h1>Success!</h1><p>Product and images updated successfully!</p><a href="/product/<?php echo $prodId; ?>">View updated product</a>`;
+            const uploadXhr = new XMLHttpRequest();
+            uploadXhr.open("POST", "/api/add_image.php", true);
+            uploadXhr.onreadystatechange = () => {
+                if ((uploadXhr.readyState == 4) && (uploadXhr.status == 200)) {
+                    let res = JSON.parse(uploadXhr.responseText);
+                    modalStatusMessage.innerHTML = `<h1>Success!</h1><p>Images updated successfully!</p><a href="/product/${prodId}" class="font-medium text-md text-blue-600 hover:underline">View updated product</a>`;
                     showModalBtn.click();
-                    storeInitialState(); // Update initial state after successful save
+                    loadProductData();
                 }
             };
-            xhr.send(formData);
+            uploadXhr.send(formData);
         }
     </script>
 </body>
