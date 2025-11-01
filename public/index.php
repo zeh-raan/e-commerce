@@ -15,12 +15,12 @@ $frontendRoutes = [
 
 $DIR = substr(__DIR__, 0, strpos(__DIR__, "public"));
 
-// Tries to route to backend
+// Tries to route to backend, else return a JSON containing error message
 function routeToBackend(string $path) {
     // ...
 }
 
-// Tries to route to frontend
+// Tries to route to frontend, else redirects to an error page
 function routeToFrontend(string $path) {
     // ...
 }
@@ -81,7 +81,7 @@ function routePath(string $path) {
     // Path to edit product (i.e. /product/123/edit)
     if (preg_match("#^product/(prod_[a-f0-9]+)/edit$#", $path, $matches)) {
         $prodID = $matches[1];
-        $frontendFilepath = $DIR . "/frontend/pages/edit_product.php";
+        $frontendFilepath = $DIR . "/frontend/pages/edit_product_form.php";
 
         if (!(file_exists($frontendFilepath) && is_file($frontendFilepath))) {
             http_response_code(404);
