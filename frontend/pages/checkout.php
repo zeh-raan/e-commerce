@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,25 +31,25 @@
           <!-- First Name -->
           <div class="flex flex-col">
             <label class="label-field">FIRST NAME</label>
-            <input name="firstName" type="text" class="input-field" placeholder="Enter First Name" />
+            <input name="firstName" type="text" class="checkout-field" placeholder="Enter First Name" />
           </div>
 
           <!-- Last Name -->
           <div class="flex flex-col">
             <label class="label-field">LAST NAME</label>
-            <input name="lastName" type="text" class="input-field" placeholder="Enter Last Name" />
+            <input name="lastName" type="text" class="checkout-field" placeholder="Enter Last Name" />
           </div>
 
           <!-- Phone -->
           <div class="flex flex-col">
             <label class="label-field">PHONE</label>
-            <input name="phone" type="text" class="input-field" placeholder="5xxxxxxx" />
+            <input name="phone" type="text" class="checkout-field" placeholder="5xxxxxxx" />
           </div>
 
           <!-- Email -->
           <div class="flex flex-col">
             <label class="label-field">EMAIL</label>
-            <input name="email" type="text" class="input-field" placeholder="xxxxxxx@gmail.com" />
+            <input name="email" type="text" class="checkout-field" placeholder="xxxxxxx@gmail.com" />
           </div>
         </div>
       </form>
@@ -64,17 +67,17 @@
       <form id="store-form" class="hidden mt-6 space-y-4">
         <div class="flex flex-col">
           <label class="label-field">PICKUP DATE</label>
-          <input name="pickupDate" type="date" class="input-field" />
+          <input name="pickupDate" type="date" class="checkout-field" />
         </div>
 
         <div class="flex flex-col">
           <label class="label-field">PICKUP TIME</label>
-          <input name="pickupTime" type="time" class="input-field" />
+          <input name="pickupTime" type="time" class="checkout-field" />
         </div>
 
         <div class="flex flex-col">
           <label class="label-field">NOTES (optional)</label>
-          <textarea name="notes" class="input-field" placeholder="Any instructions..."></textarea>
+          <textarea name="notes" class="checkout-field" placeholder="Any instructions..."></textarea>
         </div>
       </form>
     </div>

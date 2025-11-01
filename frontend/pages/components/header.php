@@ -30,13 +30,50 @@
 
             <!-- Right User & Cart -->
             <div class="flex items-center space-x-4">
-                <a href="#" class="p-2 rounded-full hover:bg-gray-500 transition-colors duration-300">
-                    <img class="icon" src="/frontend/assets/icons/user.svg" alt="User">
+                <a id="user-button" href="<?php echo isset($_SESSION['user']) ? '#' : '/frontend/pages/signup.html'; ?>" 
+                    class="p-2 rounded-full hover:bg-gray-500 transition-colors duration-300">
+
+                    <img id="user-icon" class="icon" src="/frontend/assets/icons/<?php echo isset($_SESSION['user']) ? 'logout.svg' : 'user.svg'; ?>">
                 </a>
                 <a href="/frontend/pages/cart.php" class="p-2 rounded-full hover:bg-gray-500 transition-colors duration-300">
-                    <img class="icon" src="/frontend/assets/icons/cart.svg" alt="Cart">
+                    <img class="icon" src="/frontend/assets/icons/cart.svg">
                 </a>
             </div>
         </div>
     </nav>
 </header>
+
+<!-- Popup and Overlay -->
+<div id="overlay"></div>
+<div id="popup"></div> 
+
+<script>
+    // Logout Popup
+    const $ = (selector) => document.querySelector(selector);
+
+    $("#user-button")?.addEventListener("click", (e) => {
+        const icon = $("#user-icon");
+        if (icon?.src.includes("logout.svg")) {
+            e.preventDefault();
+
+            fetch("/backend/api/logout.php")
+            .then(res => res.json())
+            .then(data => {
+                $("#popup").textContent = data.message;
+                $("#popup").classList.add("active");
+                $("#overlay").classList.add("active");
+
+                setTimeout(() => {
+                    $("#popup").classList.remove("active");
+                    $("#overlay").classList.remove("active");
+                }, 2000);
+
+                if ( data.success ) {
+                    setTimeout(() => {
+                        window.location.href = "/frontend/pages/signup.html"; // redirect to signup page
+                    }, 3000)
+                }            
+            });
+        }
+    });
+</script>

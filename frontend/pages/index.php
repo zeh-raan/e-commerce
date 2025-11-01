@@ -1,7 +1,6 @@
 <?php
-session_start(); // For per user customization
+session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +29,7 @@ session_start(); // For per user customization
 
     <!-- Section Divider -->
     <img class="absolute opacity-40" src="/frontend/assets/icons/divider.svg">
-    <h1 id="feat-product" class="text-5xl font-bold mx-16 my-12 opacity-0 transition-opacity duration-700">Featured Products.</h1>
+    <h1 id="feat-product" class="text-5xl font-bold mx-7 my-14 opacity-0 transition-opacity duration-700">Featured Products.</h1>
 
     <!-- Featured Section -->
     <section id="catalog" class="flex overflow-x-hidden">
@@ -74,8 +73,8 @@ session_start(); // For per user customization
 
     <?php include("frontend/pages/components/footer.php"); ?>
 
-  <!-- Hero animations -->
-  <script>
+<script>
+    // Hero animations
     document.addEventListener("DOMContentLoaded", () => {
       const subTitleEl = document.getElementById("hero-subtitle");
       const titleEl = document.getElementById("hero-title");
@@ -135,7 +134,6 @@ session_start(); // For per user customization
             behavior: 'smooth'
         });
     });
-
   </script>
 
     <!-- 4 spaces tabs supremacy!! -->

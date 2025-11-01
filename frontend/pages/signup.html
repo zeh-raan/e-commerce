@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Signup</title>
+
+    <!-- Talwindcss CLI -->
+    <link href="/frontend/css/output.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <section class="flex m-1">
+
+        <div class="w-full">
+            <!-- Back Home -->
+            <div class="flex items-center mt-2 mb-5">
+                <img class="icon bg-gray-300 p-1 rounded-full ml-4" src="/frontend/assets/icons/home.svg">
+                <a href="/" class="ml-2 border border-gray-400 px-4 py-2 rounded-full font-bold text-sm">Home</a>
+            </div>
+    
+            <!-- Toggle Buttons -->
+            <div class="flex justify-center border-b-2 border-gray-300 pb-2 mb-5 mx-20">
+                <div id="button-swap" class="relative flex bg-gray-200 rounded-full p-1 w-60 cursor-pointer transition-all duration-300">
+                <div id="highlight" class="absolute top-1 left-1 w-1/2 h-[calc(100%-0.5rem)] bg-black rounded-full transition-all duration-300"></div>
+    
+                <div class="relative z-10 flex text-center font-medium w-full">
+                    <p id="signup" class="flex-1 py-2 text-gray-100">Sign Up</p>
+                    <p id="login" class="flex-1 py-2 text-gray-700">Log In</p>
+                </div>
+                </div>
+            </div>
+    
+            <!-- Sign Up Form -->
+            <form id="signup-form" class="ml-40 space-y-4 w-fit">
+                <div>
+                <input name="firstName" type="text" class="input-field" placeholder="First Name">
+                <p class="error-text"></p>
+                </div>
+    
+                <div>
+                <input name="lastName" type="text" class="input-field" placeholder="Last Name">
+                <p class="error-text"></p>
+                </div>
+    
+                <div>
+                <input name="email" type="text" class="input-field" placeholder="Email">
+                <p class="error-text"></p>
+                </div>
+    
+                <div>
+                <input name="phone" type="text" class="input-field" placeholder="Phone">
+                <p class="error-text"></p>
+                </div>
+    
+                <div class="relative">
+                <input name="password" type="password" class="input-field pr-10" placeholder="Password">
+                <img id="toggle-pass" class="icon absolute right-3 top-3 cursor-pointer w-6" src="/frontend/assets/icons/show.svg">
+                <p class="error-text"></p>
+                </div>
+    
+                <button type="submit" class="buttons rounded-xl">Create Now</button>
+            </form>
+    
+            <!-- Log In Form -->
+            <form id="login-form" class="ml-40 space-y-4 w-fit hidden">
+                <div>
+                <input name="email" type="text" class="input-field" placeholder="Email">
+                <p class="error-text"></p>
+                </div>
+    
+                <div class="relative">
+                <input name="password" type="password" class="input-field pr-10" placeholder="Password">
+                <img id="toggle-login-pass" class="icon absolute right-3 top-3 cursor-pointer w-6" src="/frontend/assets/icons/show.svg">
+                <p class="error-text"></p>
+                </div>
+    
+                <button type="submit" class="buttons rounded-xl">Let's Shop</button>
+            </form>
+        </div>
+
+        <!-- Video -->
+        <div class="w-full">
+            <video class="relative h-165 object-cover rounded-2xl" autoplay muted loop playsinline src="/frontend/assets/videos/signup.mp4" type="video/mp4"></video>
+            <img class="absolute top-30 left-40 scale-y-170 rotate-270" src="/frontend/assets/icons/border.svg">
+            <div id="heading-line" class="absolute bottom-45 right-10 text-7xl space-y-2 text-gray-100 font-bold">
+                <h1 class="font-cursive heading-line opacity-0">Your</h1>
+                <h1 class="font-cursive heading-line opacity-0">Shopping</h1>
+                <h1 class="font-cursive heading-line opacity-0">Starts</h1>
+                <h1 class="font-cursive heading-line opacity-0">HERE!</h1>
+            </div>
+        </div>
+
+        <!-- Popup and Overlay -->
+        <div id="overlay"></div>
+        <div id="popup"></div>    
+
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        // Multi-use
+        const $ = (selector) => document.querySelector(selector);
+
+        // Heading fade-in animation
+        document.addEventListener("DOMContentLoaded", () => {
+            const lines = document.querySelectorAll(".heading-line");
+        
+            lines.forEach((line, index) => {
+                setTimeout(() => {
+                    line.classList.add("animate-fade-in");
+                }, 
+
+                index * 600);
+            });
+        });
+
+        // Signup/Login Form
+        document.addEventListener("DOMContentLoaded", () => {
+            const buttonSwap = document.getElementById("button-swap");
+            const highlight = document.getElementById("highlight");
+            const signup = document.getElementById("signup");
+            const login = document.getElementById("login");
+            const signupForm = document.getElementById("signup-form");
+            const loginForm = document.getElementById("login-form");
+            const showIcon = document.getElementById("toggle-pass");
+            const showLoginIcon = document.getElementById("toggle-login-pass");
+            let isSignup = true;
+        
+            // Swap Forms  
+            buttonSwap.addEventListener("click", (e) => {
+                const clickedLogin = e.target.id === "login";
+                const clickedSignup = e.target.id === "signup";
+        
+                if (clickedLogin && isSignup) {
+                    highlight.style.transform = "translateX(100%)";
+                    signup.classList.replace("text-gray-100", "text-gray-700");
+                    login.classList.replace("text-gray-700", "text-gray-100");
+                    signupForm.classList.add("hidden");
+                    loginForm.classList.remove("hidden");
+                    isSignup = false;
+                } else if (clickedSignup && !isSignup) {
+                    highlight.style.transform = "translateX(0%)";
+                    login.classList.replace("text-gray-100", "text-gray-700");
+                    signup.classList.replace("text-gray-700", "text-gray-100");
+                    loginForm.classList.add("hidden");
+                    signupForm.classList.remove("hidden");
+                    isSignup = true;
+                }
+            });
+        
+            // Show/Hide Password
+            function togglePassword(icon, input) {
+                const isHidden = input.type === "password";
+                input.type = isHidden ? "text" : "password";
+                icon.src = isHidden ? "/frontend/assets/icons/hide.svg" : "/frontend/assets/icons/show.svg";
+            }
+        
+            showIcon.addEventListener("click", () => {
+                togglePassword(showIcon, signupForm.querySelector('[name="password"]'));
+            });
+        
+            showLoginIcon.addEventListener("click", () => {
+                togglePassword(showLoginIcon, loginForm.querySelector('[name="password"]'));
+            });
+        
+            // Validation  
+            function validateInput(input) {
+                const name = input.name;
+                const value = input.value.trim();
+                const errorEl = input.nextElementSibling;
+                let msg = "";
+            
+                if (value === "") msg = "This field is required.";
+                else if (name === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
+                    msg = "Enter a valid email address.";
+                else if (name === "phone" && !/^5\d{7}$/.test(value))
+                    msg = "Phone must start with 5 and be 8 digits.";
+                else if (name === "password" && value.length < 6)
+                    msg = "Password must be at least 6 characters.";
+            
+                if (msg) {
+                    input.classList.remove("input-valid");
+                    input.classList.add("input-invalid");
+                    errorEl.textContent = msg;
+                    return false;
+                } else {
+                    input.classList.remove("input-invalid");
+                    input.classList.add("input-valid");
+                    errorEl.textContent = "";
+                    return true;
+                }
+            }
+        
+            document.querySelectorAll("input").forEach(input => {
+                input.addEventListener("blur", () => validateInput(input));
+            });
+        
+            // Form Submit  
+            [signupForm, loginForm].forEach(form => {
+                form.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    let allValid = true;
+            
+                    form.querySelectorAll("input").forEach(input => {
+                        if (!validateInput(input)) allValid = false;
+                    });
+            
+                    if (allValid) {
+                        const formData = new FormData(form);
+                        const url = form.id === "signup-form"
+                                    ? "/backend/api/signup.php"
+                                    : "/backend/api/login.php";
+
+                        fetch(url, {
+                            method: "POST",
+                            body  : formData
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            $("#popup").textContent = data.message;
+                            $("#popup").classList.add("active");
+                            $("#overlay").classList.add("active");
+                            setTimeout(() => {
+                                $("#popup").classList.remove("active");
+                                $("#overlay").classList.remove("active");
+                            }, 2000);
+
+                            if (data.success && form.id === "login-form") {
+                                setTimeout(() => {
+                                    window.location.href = "/"; // redirect to homepage
+                                }, 3000)
+                            }
+                        })
+                    }
+                    form.reset();
+                    form.querySelectorAll("input").forEach(i => i.classList.remove("input-valid"));
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
