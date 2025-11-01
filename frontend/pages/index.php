@@ -9,15 +9,17 @@ session_start();
 
     <title>Shop - Home</title>
 
-    <link href="/frontend/css/output.css" rel="stylesheet">
+    <link href="/css/output.css" rel="stylesheet">
 </head>
 
 <body>
-    <?php include("frontend/pages/components/header.php"); ?>
+    <?php include("components/header.php"); ?>
 
     <!-- Hero Section -->
-    <section id="hero" class="relative h-96 flex flex-col items-center justify-center bg-[url('/frontend/assets/images/bghero.avif')] bg-cover bg-center text-center">
-        <div class="relative">
+    <section id="hero" class="relative h-96 flex flex-col items-center justify-center bg-cover bg-center text-center">
+        <img src="/assets/images/bghero.avif" class="absolute top-0 left-0 -z-100 w-full">
+
+        <div class="relative mt-20">
             <h2 id="hero-subtitle" class="text-3xl text-white font-bold mt-7 mr-20 opacity-0"></h2>
             <h1 id="hero-title" class="text-8xl font-extrabold text-white opacity-0 absolute left-1/2 -translate-x-1/2 -top-10 tracking-wide mix-blend-overlay"></h1>
         </div>
@@ -32,7 +34,7 @@ session_start();
     <h1 id="feat-product" class="text-5xl font-bold mx-7 my-14 opacity-0 transition-opacity duration-700">Featured Products.</h1>
 
     <!-- Featured Section -->
-    <section id="catalog" class="flex overflow-x-hidden">
+    <section id="catalog" class="overflow-x-hidden">
         <!-- <button id="prev" class="carousel-nav-btn"><img class="w-30 h-30" src="/frontend/assets/icons/left.svg"></button> -->
         
         <div id="carousel" class="flex overflow-x-hidden snap-x snap-mandatory scroll-smooth space-x-6">
@@ -71,7 +73,7 @@ session_start();
     </script>
     -->
 
-    <?php include("frontend/pages/components/footer.php"); ?>
+    <?php include("components/footer.php"); ?>
 
 <script>
     // Hero animations
@@ -81,36 +83,36 @@ session_start();
       const descEl = document.getElementById("hero-desc");
       const featProd = document.getElementById("feat-product");
 
-      const subText = "Welcome to Our";
-      const mainText = "SHOP.";
-      let i = 0, j = 0;
+            const subText = "Welcome to Our";
+            const mainText = "SHOP.";
+            let i = 0, j = 0;
 
-      // Type "Welcome to"
-      function typeSub() {
-        if (i < subText.length) {
-          subTitleEl.textContent = subText.substring(0, i + 1);
-          subTitleEl.style.opacity = 1;
-          i++;
-          setTimeout(typeSub, 100);
-        } else {
-          setTimeout(typeMain, 400);
-        }
-      }
+            // Type "Welcome to"
+            function typeSub() {
+                if (i < subText.length) {
+                    subTitleEl.textContent = subText.substring(0, i + 1);
+                    subTitleEl.style.opacity = 1;
+                    i++;
+                    setTimeout(typeSub, 100);
+                } else {
+                    setTimeout(typeMain, 400);
+                }  
+            }
 
-      // Type "SHOP." with larger font size and lower opacity behind
-      function typeMain() {
-        if (j < mainText.length) {
-          titleEl.textContent = mainText.substring(0, j + 1);
-          titleEl.style.opacity = 0.4;
-          j++;
-          setTimeout(typeMain, 150);
-        } else {
-          setTimeout(() => {
-            descEl.style.opacity = 1; // Show paragraph
-            featProd.style.opacity = 1; // Show heading
-          }, 600);
-        }
-      }
+            // Type "SHOP." with larger font size and lower opacity behind
+            function typeMain() {
+                if (j < mainText.length) {
+                    titleEl.textContent = mainText.substring(0, j + 1);
+                    titleEl.style.opacity = 0.4;
+                    j++;
+                    setTimeout(typeMain, 150);
+                } else {
+                    setTimeout(() => {
+                        descEl.style.opacity = 1; // Show paragraph
+                        featProd.style.opacity = 1; // Show heading
+                        }, 600);
+                    }
+                }
 
       // Call animation
       typeSub();
@@ -163,9 +165,18 @@ session_start();
                 return;
             }
 
+            // Chooses five random products
+            const randomIndices = [];
+            while (randomIndices.length < 5) {
+                let rnd = Math.floor(Math.random() * products.length);
+                if (!randomIndices.includes(rnd)) {
+                    randomIndices.push(rnd);
+                }
+            }
+
             const productDetails = [];
-            for (let i = 0; i < products.length; i++) {
-                productDetails.push(getProductDetails(products[i]));
+            for (let i = 0; i < randomIndices.length; i++) {
+                productDetails.push(getProductDetails(products[randomIndices[i]]));
             }
 
             // TODO: Make this code better

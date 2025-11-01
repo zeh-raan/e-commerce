@@ -233,4 +233,8 @@
     }
 
 
+    /* For delete button in cart */
+    .red-filter {
+        filter: invert(16%) sepia(100%) saturate(4382%) hue-rotate(350deg) brightness(97%) contrast(107%);
+    }
 }

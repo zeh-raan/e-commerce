@@ -6,7 +6,7 @@
     <title>Shop - Signup</title>
 
     <!-- Talwindcss CLI -->
-    <link href="/frontend/css/output.css" rel="stylesheet">
+    <link href="/css/output.css" rel="stylesheet">
 
 </head>
 <body>
@@ -16,7 +16,7 @@
         <div class="w-full">
             <!-- Back Home -->
             <div class="flex items-center mt-2 mb-5">
-                <img class="icon bg-gray-300 p-1 rounded-full ml-4" src="/frontend/assets/icons/home.svg">
+                <img class="icon bg-gray-300 p-1 rounded-full ml-4" src="/public/assets/icons/home.svg">
                 <a href="/" class="ml-2 border border-gray-400 px-4 py-2 rounded-full font-bold text-sm">Home</a>
             </div>
     
@@ -56,7 +56,7 @@
     
                 <div class="relative">
                 <input name="password" type="password" class="input-field pr-10" placeholder="Password">
-                <img id="toggle-pass" class="icon absolute right-3 top-3 cursor-pointer w-6" src="/frontend/assets/icons/show.svg">
+                <img id="toggle-pass" class="icon absolute right-3 top-3 cursor-pointer w-6" src="/public/assets/icons/show.svg">
                 <p class="error-text"></p>
                 </div>
     
@@ -72,7 +72,7 @@
     
                 <div class="relative">
                 <input name="password" type="password" class="input-field pr-10" placeholder="Password">
-                <img id="toggle-login-pass" class="icon absolute right-3 top-3 cursor-pointer w-6" src="/frontend/assets/icons/show.svg">
+                <img id="toggle-login-pass" class="icon absolute right-3 top-3 cursor-pointer w-6" src="/public/assets/icons/show.svg">
                 <p class="error-text"></p>
                 </div>
     
@@ -82,8 +82,8 @@
 
         <!-- Video -->
         <div class="w-full">
-            <video class="relative h-165 object-cover rounded-2xl" autoplay muted loop playsinline src="/frontend/assets/videos/signup.mp4" type="video/mp4"></video>
-            <img class="absolute top-30 left-40 scale-y-170 rotate-270" src="/frontend/assets/icons/border.svg">
+            <video class="relative h-165 object-cover rounded-2xl" autoplay muted loop playsinline src="/public/assets/videos/signup.mp4" type="video/mp4"></video>
+            <img class="absolute top-30 left-40 scale-y-170 rotate-270" src="/public/assets/icons/border.svg">
             <div id="heading-line" class="absolute bottom-45 right-10 text-7xl space-y-2 text-gray-100 font-bold">
                 <h1 class="font-cursive heading-line opacity-0">Your</h1>
                 <h1 class="font-cursive heading-line opacity-0">Shopping</h1>
@@ -154,7 +154,7 @@
             function togglePassword(icon, input) {
                 const isHidden = input.type === "password";
                 input.type = isHidden ? "text" : "password";
-                icon.src = isHidden ? "/frontend/assets/icons/hide.svg" : "/frontend/assets/icons/show.svg";
+                icon.src = isHidden ? "/public/assets/icons/hide.svg" : "/public/assets/icons/show.svg";
             }
         
             showIcon.addEventListener("click", () => {

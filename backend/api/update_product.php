@@ -1,6 +1,6 @@
 <?php
 
-// Handler function to delete product from XML
+// Handler function to edit/modify product in XML
 header("Content-Type: application/json; charset=utf-8");
 
 // Catches JSON input

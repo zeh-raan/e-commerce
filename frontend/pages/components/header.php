@@ -4,39 +4,40 @@
         <div class="flex items-center justify-between h-16">
 
             <!-- Left Search bar -->
-            <form class="relative w-72" method="GET" action="">
-                <input
-                type="text"
-                placeholder="Search product here..."
-                class="w-full pl-4 pr-10 py-2 rounded-full shadow-xl backdrop-blur-2xl hover:text-gray-200 placeholder-gray-400 transition-colors duration-300 focus:outline-none focus:ring-2 hover:bg-gray-800"
-                name="prodName"
-                id="prodName"
-                >
+            <form class="flex-1 flex items-center" method="GET" action="/catalog">
+                <div class="relative w-62">
+                    <input
+                        type="text"
+                        placeholder="Search product here..."
+                        class="w-full pl-4 pr-10 py-2 rounded-full shadow-xl backdrop-blur-2xl hover:text-gray-200 placeholder-gray-400 transition-colors duration-300 focus:outline-none focus:ring-2 hover:bg-gray-800"
+                        name="prodName"
+                        id="prodName"
+                    >
 
-                <!-- Icon inside input -->
-                <div class="absolute inset-y-0 right-0 flex items-center pr-3 border-l border-gray-900 h-full">
-                    <button type="submit" class="p-1">
-                        <img class="icon" src="/frontend/assets/icons/search.svg" alt="Search">
+                    <button type="submit" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-200 transition-colors duration-300">
+                        <img src="public/assets/icons/search.svg" class="w-5 h-5">
                     </button>
                 </div>
             </form>
 
             <!-- Center Navigation links -->
-            <div class="flex space-x-8 justify-center flex-1">
-                <a href="/" class="links">Home</a>
-                <a href="/frontend/pages/catalog.php" class="links">Catalog</a>
-                <a href="#" class="links">About Us</a>
+            <div class="w-fit flex flex-1 space-x-8 justify-center items-end">
+                <!-- <h1 class="text-xl font-bold">Shop.</h1> -->
+
+                <a href="/" class="links pb-0.2">Home</a>
+                <a href="/catalog" class="links pb-0.2">Catalog</a>
+                <a href="#" class="links pb-0.2">About Us</a>
             </div>
 
             <!-- Right User & Cart -->
             <div class="flex items-center space-x-4">
-                <a id="user-button" href="<?php echo isset($_SESSION['user']) ? '#' : '/frontend/pages/signup.html'; ?>" 
+                <a id="user-button" href="<?php echo isset($_SESSION['user']) ? '#' : '/signup.html'; ?>" 
                     class="p-2 rounded-full hover:bg-gray-500 transition-colors duration-300">
 
-                    <img id="user-icon" class="icon" src="/frontend/assets/icons/<?php echo isset($_SESSION['user']) ? 'logout.svg' : 'user.svg'; ?>">
+                    <img id="user-icon" class="icon" src="public/assets/icons<?php echo isset($_SESSION['user']) ? 'logout.svg' : 'user.svg'; ?>">
                 </a>
-                <a href="/frontend/pages/cart.php" class="p-2 rounded-full hover:bg-gray-500 transition-colors duration-300">
-                    <img class="icon" src="/frontend/assets/icons/cart.svg">
+                <a href="/cart.php" class="p-2 rounded-full hover:bg-gray-500 transition-colors duration-300">
+                    <img class="icon" src="public/assets/icons/cart.svg">
                 </a>
             </div>
         </div>
