@@ -71,7 +71,7 @@
 
                 if ( data.success ) {
                     setTimeout(() => {
-                        window.location.href = "/frontend/pages/signup.html"; // redirect to signup page
+                        window.location.href = "/signup.html"; // redirect to signup page
                     }, 3000)
                 }            
             });
