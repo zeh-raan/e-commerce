@@ -9,11 +9,11 @@
         <admin>1</admin>
     </user>
     <user>
-        <firstName>Boodhun</firstName>
-        <lastName>Abdurahman</lastName>
+        <firstName>Boodun</firstName>
+        <lastName>Abdur-Rahmaan</lastName>
         <email>boods@gmail.com</email>
         <phone>58908756</phone>
         <password>$2y$12$pjeBKqJTmRJuwyy5gTfcG.2tMf4AMtJaQqY520NbrjRaYdMcSHgsu</password>
-        <admin>1</admin>
+        <admin>0</admin>
     </user>
-<user><firstName>ABCD</firstName><lastName>EFGH</lastName><email>abcd@efgh.com</email><phone>51234567</phone><password>$2y$12$yRbUwLarrxUzTXcWYgISnOlBeQayQJMWQvwlDp71q5GNP5/pw1Y4i</password><admin>0</admin></user><user><firstName>sfdfdfsfd</firstName><lastName>fsdsdffdsdf</lastName><email>zsddassd@hjihi.jhio</email><phone>51234567</phone><password>$2y$12$QvaHWdGZBbI4JmCJ0jcF4uR1TT3hlB5LdnycUaTY.9TXwKxU0W1g2</password><admin>0</admin></user><user><firstName>gsdrfdsfvsdf</firstName><lastName>sdfsdfsdfsdf</lastName><email>fsdfcsd@guhjsgdfusdgu.com</email><phone>51234567</phone><password>$2y$12$GEf7ZiQDPbycyUjY5Bdh6uXvJyUZYX31hSbk0Ryee67Jzob.AX6k2</password><admin>0</admin></user><user><firstName>sdfsdfsdf</firstName><lastName>sdfsdfsdfsdf</lastName><email>sdfsdfsdfsdf@email.com</email><phone>51234567</phone><password>$2y$12$KZec51xLAMPnwoj1CcBRN.JYoJCSCviCmeHY7LzCzIkAvLq6rDdxa</password><admin>0</admin></user><user><firstName>dffgdgdfdg</firstName><lastName>sdfsdfsdfsdfsddf</lastName><email>sdffsdfsd@ghihias.com</email><phone>51234567</phone><password>$2y$12$ZLsvpk9zm869emrdKRNx1u20J9GlaZpkyHbb.bT4VWirvvK9PiBoC</password><admin>0</admin></user></users>
+</users>

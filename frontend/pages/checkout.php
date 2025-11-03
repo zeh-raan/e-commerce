@@ -252,6 +252,8 @@ if (isset($_SESSION['user'])) {
                     $("#checkout-form").reset();
                     $("#store-form").reset();
                     $("#store-form").classList.add("hidden");
+
+                    clearCart();
                 }
             };
             

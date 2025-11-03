@@ -124,9 +124,9 @@ session_start();
 
                 category.querySelectorAll("product").forEach(prod => {
                     const id = prod.getAttribute("id");
-                    const name  = prod.querySelector("name").textContent;
-                    const price = prod.querySelector("price").textContent;
-                    const img   = prod.querySelector("img").textContent;
+                    let name = prod.getElementsByTagName("name")[0].childNodes[0].nodeValue;
+                    let price = prod.getElementsByTagName("price")[0].childNodes[0].nodeValue;
+                    let img = prod.getElementsByTagName("img")[0].childNodes[0].nodeValue;
 
                     cardsHtml += `
                     <div class="product-card rounded-2xl shadow-md border border-gray-200 hover:shadow-lg transition duration-200 p-4 flex flex-col items-center" data-category="${categoryName}" data-name="${name}">
